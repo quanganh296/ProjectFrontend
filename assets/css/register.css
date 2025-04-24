@@ -1,0 +1,38 @@
+/* CSS cho trang đăng nhập */
+.register-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+   
+}
+
+.video-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.register-form-container {
+    position: relative;
+    z-index: 10;
+    max-width: 28rem;
+    width: 100%;
+    opacity:0.5;
+}
+
+.headerRegister {
+    background-color: rgb(128, 128, 128,0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+}
+.comfirmBtn{
+    background-color: rgb(128, 128, 128,0.9);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;}

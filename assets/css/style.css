@@ -1,0 +1,65 @@
+
+.containerStart{
+    background-image: url("D:/code/ProjectFrontend/assets/pic/a816367e548d6aab61dcb73cfa8854af38fcac5b.png");
+    padding:20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    width:1521px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.Gym{
+    width: 100%;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.Zumba{
+    width: 100%;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.Yoga{
+    width: 100%;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+.startButton{
+    background-color:rgb(37, 154, 249);
+    color:white;
+    border-radius: 10px;
+    padding:10px;
+}
+.startButton:hover{
+    background-color:white;
+    color: rgb(37, 154, 249);
+    cursor: pointer;
+    transition: 0.3s;
+}
+@media screen and (max-width: 768px) {
+    .containerStart {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+    .Gym, .Zumba, .Yoga {
+        width: 80%;
+        height: auto;
+    }
+    .startButton {
+        width: 100%;
+        padding: 5px;
+    }
+    .startButton:hover {
+        width: 100%;
+        padding: 5px;
+    }
+    
+}

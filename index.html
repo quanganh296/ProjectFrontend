@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="D:\code\ProjectFrontend\assets\css\style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+                <a href="index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="pages/booking/schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
+                <a href="pages/auth/login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
+                <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
+                <a href="pages/admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            <a href="index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="pages/booking/schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
+            <a href="pages/auth/login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
+            <a href="pages/admin/dashboard.html" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="containerStart">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">Welcome to Our Gym</h1>
+            <p class="text-xl mb-8">Transform Your Body, Transform Your Life</p>
+            
+            <div>
+                <a href="pages/auth/register.html" class="startButton">Bắt đầu ngay</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Classes -->
+    <div class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-10">Các lớp học phổ biến</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Class Card 1 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="Gym">
+                        <img src="D:\code\ProjectFrontend\assets\pic\maxresdefault.jpg" alt="Gym" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Gym</h3>
+                        <p class="text-gray-600 mb-4">Tập luyện với các thiết bị hiện đại dưới sự hướng dẫn của huấn luyện viên chuyên nghiệp.</p>
+                        <a href="pages/booking/schedule.html?class=gym" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+                    </div>
+                </div>
+
+                <!-- Class Card 2 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="Yoga">
+                      <img src="D:\code\ProjectFrontend\assets\pic\129d13f4f59078bd275f530388118e23.jpg" alt="Yoga" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Yoga</h3>
+                        <p class="text-gray-600 mb-4">Khám phá sự cân bằng và thư giãn tuyệt vời với các bài tập yoga đa dạng.</p>
+                        <a href="pages/booking/schedule.html?class=yoga" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+                    </div>
+                </div>
+
+                <!-- Class Card 3 -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div class="Zumba">
+                        <img src="D:\code\ProjectFrontend\assets\pic\7ef967fae24731f1d342cc2c22dbd1e6701e6e6e.png" alt="Zumba" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Zumba</h3>
+                        <p class="text-gray-600 mb-4">Đốt cháy calo với các bài tập nhịp điệu vui nhộn và sôi động.</p>
+                        <a href="pages/booking/schedule.html?class=zumba" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Về chúng tôi</h3>
+                    <p class="text-gray-400">Gym Management - Nơi bạn bắt đầu hành 
+                        trình fitness của mình với các trang 
+                        thiết bị hiện đại và đội ngũ huấn luyện 
+                        viên chuyên nghiệp.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: contact@gym.com</p>
+                    <p class="text-gray-400">Phone: (123) 456-7890</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="index.html" class="hover:text-white">Facebook
+                            Instagram
+                            Twitter</a></li>
+                            
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Gym Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/db.js"></script>
+</body>
+</html>

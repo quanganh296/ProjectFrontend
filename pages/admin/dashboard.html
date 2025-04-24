@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị - Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="#" class="hover:text-blue-200" id="logout-link">Đăng xuất</a>
+                <a href="dashboard.html" class="hover:text-blue-200" id="admin-link">Admin</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600" id="mobile-logout-link">Đăng xuất</a>
+            <a href="dashboard.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">Bảng điều khiển quản trị</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <!-- Thống kê 1 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-600 mb-2">Tổng số thành viên</h3>
+                <p class="text-3xl font-bold" id="total-users">0</p>
+            </div>
+            
+            <!-- Thống kê 2 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-600 mb-2">Lịch đặt hôm nay</h3>
+                <p class="text-3xl font-bold" id="today-bookings">0</p>
+            </div>
+            
+            <!-- Thống kê 3 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-600 mb-2">Tổng số lớp học</h3>
+                <p class="text-3xl font-bold">3</p>
+            </div>
+            
+            <!-- Thống kê 4 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-semibold text-gray-600 mb-2">Huấn luyện viên</h3>
+                <p class="text-3xl font-bold">5</p>
+            </div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="bg-white rounded-lg shadow-md mb-8">
+            <div class="border-b">
+                <ul class="flex flex-wrap -mb-px">
+                    <li class="mr-2">
+                        <button class="inline-block py-4 px-6 border-b-2 border-blue-600 font-medium text-blue-600 tab-button active" data-tab="bookings">
+                            Lịch đặt
+                        </button>
+                    </li>
+                    <li class="mr-2">
+                        <button class="inline-block py-4 px-6 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 tab-button" data-tab="users">
+                            Người dùng
+                        </button>
+                    </li>
+                    <li class="mr-2">
+                        <button class="inline-block py-4 px-6 border-b-2 border-transparent font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 tab-button" data-tab="classes">
+                            Lớp học
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Tab content -->
+            <div class="p-6">
+                <!-- Lịch đặt -->
+                <div class="tab-content" id="bookings-tab">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Quản lý lịch đặt</h2>
+                        <div>
+                            <label for="booking-date-filter" class="sr-only">Chọn ngày</label>
+                            <input type="date" class="border rounded px-3 py-2 mr-2" id="booking-date-filter" title="Chọn ngày" placeholder="YYYY-MM-DD">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="filter-bookings">
+                                Lọc
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">ID</th>
+                                    <th class="py-3 px-4 text-left">Người dùng</th>
+                                    <th class="py-3 px-4 text-left">Ngày</th>
+                                    <th class="py-3 px-4 text-left">Thời gian</th>
+                                    <th class="py-3 px-4 text-left">Lớp học</th>
+                                    <th class="py-3 px-4 text-left">Huấn luyện viên</th>
+                                    <th class="py-3 px-4 text-left">Trạng thái</th>
+                                    <th class="py-3 px-4 text-left">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookings-list">
+                                <!-- Danh sách lịch đặt sẽ được hiển thị ở đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Người dùng -->
+                <div class="tab-content hidden" id="users-tab">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Quản lý người dùng</h2>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="add-user-btn">
+                            Thêm người dùng
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">ID</th>
+                                    <th class="py-3 px-4 text-left">Tên đăng nhập</th>
+                                    <th class="py-3 px-4 text-left">Email</th>
+                                    <th class="py-3 px-4 text-left">Họ tên</th>
+                                    <th class="py-3 px-4 text-left">Vai trò</th>
+                                    <th class="py-3 px-4 text-left">Ngày đăng ký</th>
+                                    <th class="py-3 px-4 text-left">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-list">
+                                <!-- Danh sách người dùng sẽ được hiển thị ở đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Lớp học -->
+                <div class="tab-content hidden" id="classes-tab">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Quản lý lớp học</h2>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" id="add-class-btn">
+                            Thêm lớp học
+                        </button>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="py-3 px-4 text-left">ID</th>
+                                    <th class="py-3 px-4 text-left">Tên lớp</th>
+                                    <th class="py-3 px-4 text-left">Mô tả</th>
+                                    <th class="py-3 px-4 text-left">Huấn luyện viên</th>
+                                    <th class="py-3 px-4 text-left">Thời gian</th>
+                                    <th class="py-3 px-4 text-left">Số người tối đa</th>
+                                    <th class="py-3 px-4 text-left">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="classes-list">
+                                <!-- Danh sách lớp học sẽ được hiển thị ở đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
+                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: info@gymsystem.com</p>
+                    <p class="text-gray-400">Điện thoại: 0123 456 789</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="../../index.html" class="hover:text-white">Trang chủ</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Gym Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/db.js"></script>
+    <script src="../../assets/js/booking.js"></script>
+</body>
+</html>

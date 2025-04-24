@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ sơ người dùng - Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="../booking/schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
+                <a href="../auth/login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
+                <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
+                <a href="../admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="../booking/schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
+            <a href="../auth/login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
+            <a href="../admin/dashboard.html" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Profile Content -->
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="bg-blue-600 text-white px-6 py-4">
+                <h2 class="text-xl font-bold">Hồ sơ người dùng</h2>
+            </div>
+            <div class="px-6 py-8">
+                <div id="profile-view">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Họ và tên:</label>
+                        <p id="profile-fullname" class="text-gray-700"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <p id="profile-email" class="text-gray-700"></p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Số điện thoại:</label>
+                        <p id="profile-phone" class="text-gray-700"></p>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Ngày đăng ký:</label>
+                        <p id="profile-registered" class="text-gray-700"></p>
+                    </div>
+                    <button id="edit-profile-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Chỉnh sửa hồ sơ
+                    </button>
+                </div>
+                <form id="profile-edit-form" class="hidden">
+                    <div class="mb-4">
+                        <label for="edit-fullname" class="block text-gray-700 text-sm font-bold mb-2">Họ và tên:</label>
+                        <input type="text" id="edit-fullname" name="fullName" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="edit-phone" class="block text-gray-700 text-sm font-bold mb-2">Số điện thoại:</label>
+                        <input type="tel" id="edit-phone" name="phone" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Lưu thay đổi
+                        </button>
+                        <button type="button" id="cancel-edit-btn" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Hủy
+                        </button>
+                    </div>
+                    <div id="error-message" class="text-red-500 text-sm mt-2 hidden"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
+                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84a3bda9b7bdb7b0a1a9eaa7aba9">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Điện thoại: 0123 456 789</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="../../index.html" class="hover:text-white">Trang chủ</a></li>
+                        <li class="mb-2"><a href="../booking/schedule.html" class="hover:text-white">Đặt lịch tập</a></li>
+                        <li class="mb-2"><a href="../auth/login.html" class="hover:text-white">Đăng nhập</a></li>
+                        <li class="mb-2"><a href="../auth/register.html" class="hover:text-white">Đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Gym Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/db.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra đăng nhập
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            // Hiển thị thông tin người dùng
+            const fullnameEl = document.getElementById('profile-fullname');
+            const emailEl = document.getElementById('profile-email');
+            const phoneEl = document.getElementById('profile-phone');
+            const registeredEl = document.getElementById('profile-registered');
+            fullnameEl.textContent = currentUser.fullName || 'Chưa cập nhật';
+            emailEl.textContent = currentUser.email;
+            phoneEl.textContent = currentUser.phone || 'Chưa cập nhật';
+            registeredEl.textContent = currentUser.registeredDate || 'Chưa cập nhật';
+
+            // Xử lý chỉnh sửa hồ sơ
+            const editBtn = document.getElementById('edit-profile-btn');
+            const editForm = document.getElementById('profile-edit-form');
+            const viewSection = document.getElementById('profile-view');
+            const cancelBtn = document.getElementById('cancel-edit-btn');
+            const errorMessage = document.getElementById('error-message');
+
+            editBtn.addEventListener('click', () => {
+                viewSection.classList.add('hidden');
+                editForm.classList.remove('hidden');
+                document.getElementById('edit-fullname').value = currentUser.fullName || '';
+                document.getElementById('edit-phone').value = currentUser.phone || '';
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                editForm.classList.add('hidden');
+                viewSection.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+            });
+
+            editForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const fullName = document.getElementById('edit-fullname').value.trim();
+                const phone = document.getElementById('edit-phone').value.trim();
+
+                if (!fullName || !phone) {
+                    errorMessage.textContent = 'Vui lòng nhập đầy đủ thông tin!';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                // Cập nhật thông tin người dùng
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(u => u.email === currentUser.email);
+                if (userIndex !== -1) {
+                    users[userIndex].fullName = fullName;
+                    users[userIndex].phone = phone;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
+                    alert('Cập nhật hồ sơ thành công!');
+                    window.location.reload();
+                } else {
+                    errorMessage.textContent = 'Lỗi: Không tìm thấy người dùng!';
+                    errorMessage.classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

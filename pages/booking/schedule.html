@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt lịch tập - Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/tailwind.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
+                <a href="../auth/login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
+                <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
+                <a href="../admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
+            <a href="../auth/login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
+            <a href="../admin/dashboard.html" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Booking Content -->
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center">Đặt lịch tập</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Booking Form Panel -->
+            <div class="md:col-span-1 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4 text-blue-600">Đặt lịch mới</h2>
+                <form id="booking-form">
+                    <div class="mb-4">
+                        <label for="class-select" class="block text-gray-700 text-sm font-bold mb-2">Chọn lớp học</label>
+                        <select id="class-select" name="class" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <option value="">-- Chọn lớp học --</option>
+                            <!-- Options will be loaded by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="booking-date" class="block text-gray-700 text-sm font-bold mb-2">Ngày tập</label>
+                        <input type="date" id="booking-date" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="booking-time" class="block text-gray-700 text-sm font-bold mb-2">Giờ tập</label>
+                        <select id="booking-time" name="time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                            <option value="">-- Chọn giờ tập --</option>
+                            <option value="07:00 - 09:00">07:00 - 09:00</option>
+                            <option value="09:00 - 11:00">09:00 - 11:00</option>
+                            <option value="14:00 - 16:00">14:00 - 16:00</option>
+                            <option value="16:00 - 18:00">16:00 - 18:00</option>
+                            <option value="18:00 - 20:00">18:00 - 20:00</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                            Đặt lịch
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- User Schedules Panel -->
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-blue-600">Lịch đã đặt</h2>
+                    <div class="flex space-x-2">
+                        <label for="filter-status" class="sr-only">Lọc theo trạng thái</label>
+                        <select id="filter-status" class="shadow border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" aria-label="Lọc theo trạng thái">
+                            <option value="all">Tất cả</option>
+                            <option value="pending">Chờ duyệt</option>
+                            <option value="approved">Đã duyệt</option>
+                            <option value="cancelled">Đã hủy</option>
+                        </select>
+                        <label for="filter-class" class="sr-only">Lọc theo lớp</label>
+                        <select id="filter-class" class="shadow border rounded py-1 px-3 text-gray-700 text-sm leading-tight focus:outline-none focus:shadow-outline" aria-label="Lọc theo lớp">
+                            <option value="all">Tất cả lớp</option>
+                            <!-- Options will be loaded by JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Lớp học</th>
+                                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Ngày tập</th>
+                                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Giờ tập</th>
+                                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Trạng thái</th>
+                                <th class="py-2 px-4 border-b border-gray-200 bg-gray-50 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-table-body">
+                            <!-- User schedules will be loaded here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="no-schedules" class="text-center py-4 text-gray-500 hidden">
+                    Bạn chưa đặt lịch nào.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
+                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: info@gymsystem.com</p>
+                    <p class="text-gray-400">Điện thoại: 0123 456 789</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
+                    <ul class="text-gray-400">

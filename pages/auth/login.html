@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/login.css">
+  
+</head>
+<body>
+    
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+       
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+               
+                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="../booking/schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
+                <a href="login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
+                <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
+                <a href="../admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            
+            <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="../booking/schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
+            <a href="login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
+            <a href="../admin/dashboard.html" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <!-- Login Form with Video Background -->
+    <div class="login-container">
+        <!-- Login Form -->
+        <div class="login-form-container">
+            <div class="bg-white bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <div class="headerLogin">
+                    <h2 class="text-xl font-bold">Đăng nhập</h2>
+                </div>
+                <form id="login-form" class="px-6 py-8">
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p id="email-error" class="text-red-500 text-sm mt-1 hidden"></p>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Mật khẩu:</label>
+                        <input type="password" id="password" name="password" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p id="password-error" class="text-red-500 text-sm mt-1 hidden"></p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button type="submit" id="login-btn"
+                            class="comfirmBtn">
+                            Đăng nhập
+                        </button>
+                        <a href="register.html" class="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800">
+                            Chưa có tài khoản? Đăng ký
+                        </a>
+                    </div>
+                    <div id="error-message" class="text-red-500 text-sm mt-2 hidden"></div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Video Background (placed after the form in the DOM but visually behind it) -->
+        <video autoplay muted loop class="video-background">
+            <source src="../../assets/pic/ae18844be57a1e8415d1da00282249ec.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
+                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315c5b535a7156485c42484245545c1f525e5c">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Điện thoại: 0123 456 789</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="../../index.html" class="hover:text-white">Trang chủ</a></li>
+                        <li class="mb-2"><a href="../booking/schedule.html" class="hover:text-white">Đặt lịch tập</a></li>
+                        <li class="mb-2"><a href="login.html" class="hover:text-white">Đăng nhập</a></li>
+                        <li class="mb-2"><a href="register.html" class="hover:text-white">Đăng ký</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>© 2025 Gym Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/db.js"></script>
+</body>
+</html>
