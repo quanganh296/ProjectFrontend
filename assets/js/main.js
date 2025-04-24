@@ -38,13 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateNavigation() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser) {
-        const restrictedPages = ['schedule.html', 'dashboard.html']; 
+        const restrictedPages = ['schedule.html', 'dashboard.html'];
         const currentPage = window.location.pathname.split('/').pop();
         if (restrictedPages.includes(currentPage)) {
             window.location.href = '../auth/login.html';
             return;
         }
     }
+
     const loginLinks = document.querySelectorAll('#login-link, #mobile-login-link');
     const logoutLinks = document.querySelectorAll('#logout-link, #mobile-logout-link');
     const adminLinks = document.querySelectorAll('#admin-link, #mobile-admin-link');
@@ -54,9 +55,11 @@ function updateNavigation() {
         logoutLinks.forEach(link => link.classList.remove('hidden'));
         if (currentUser.role === 'admin') {
             adminLinks.forEach(link => link.classList.remove('hidden'));
+        } else {
+            adminLinks.forEach(link => link.classList.add('hidden'));
         }
         logoutLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
                 localStorage.removeItem('currentUser'); 
                 window.location.href = '../auth/login.html'; 
