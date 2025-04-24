@@ -41,7 +41,7 @@ function updateNavigation() {
         const restrictedPages = ['schedule.html', 'dashboard.html'];
         const currentPage = window.location.pathname.split('/').pop();
         if (restrictedPages.includes(currentPage)) {
-            window.location.href = '../auth/login.html';
+            window.location.href = 'D:/code/ProjectFrontend/pages/auth/login.html';
             return;
         }
     }
@@ -62,7 +62,7 @@ function updateNavigation() {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 localStorage.removeItem('currentUser'); 
-                window.location.href = '../auth/login.html'; 
+                window.location.href = 'D:/code/ProjectFrontend/pages/auth/login.html'; 
             });
         });
     } else {

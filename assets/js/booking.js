@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || currentUser.role !== 'admin') {
-        window.location.href = '../auth/login.html';
+        window.location.href = 'D:\code\ProjectFrontend\pages\auth\login.html';
         return;
     }
     const tabButtons = document.querySelectorAll('.tab-button');

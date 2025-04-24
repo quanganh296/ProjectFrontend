@@ -16,7 +16,7 @@
             <div class="hidden md:flex space-x-4" id="nav-links">
                 <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
                 <a href="../booking/schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
-                <a href="../auth/login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
+                <a href="D:\code\ProjectFrontend\pages\auth\login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
                 <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
                 <a href="../admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
             </div>
@@ -30,7 +30,7 @@
         <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
             <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
             <a href="../booking/schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
-            <a href="../auth/login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="D:\code\ProjectFrontend\pages\auth\login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
             <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
             <a href="../admin/dashboard.html" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-admin-link">Admin</a>
         </div>
@@ -108,7 +108,7 @@
                     <ul class="text-gray-400">
                         <li class="mb-2"><a href="../../index.html" class="hover:text-white">Trang chủ</a></li>
                         <li class="mb-2"><a href="../booking/schedule.html" class="hover:text-white">Đặt lịch tập</a></li>
-                        <li class="mb-2"><a href="../auth/login.html" class="hover:text-white">Đăng nhập</a></li>
+                        <li class="mb-2"><a href="D:\code\ProjectFrontend\pages\auth\login.html" class="hover:text-white">Đăng nhập</a></li>
                         <li class="mb-2"><a href="../auth/register.html" class="hover:text-white">Đăng ký</a></li>
                     </ul>
                 </div>
@@ -128,7 +128,7 @@
             // Kiểm tra đăng nhập
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (!currentUser) {
-                window.location.href = '../auth/login.html';
+                window.location.href = 'D:\code\ProjectFrontend\pages\auth\login.html';
                 return;
             }
 
