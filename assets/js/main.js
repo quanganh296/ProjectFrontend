@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (user.role === 'admin') {
                         window.location.href = '../../pages/admin/dashboard.html';
                     } else {
-                        window.location.href = '../../pages/user/profile.html';
+                        window.location.href = 'D:/code/ProjectFrontend/index.html';
                     }
                 } else {
                     const emailExists = users.some(u => u.email === email);
@@ -37,24 +37,42 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 function updateNavigation() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Kiểm tra nếu người dùng chưa đăng nhập
+    if (!currentUser) {
+        const restrictedPages = ['schedule.html', 'dashboard.html']; // Các trang yêu cầu đăng nhập
+        const currentPage = window.location.pathname.split('/').pop();
+        if (restrictedPages.includes(currentPage)) {
+            // Chuyển hướng về trang đăng nhập
+            window.location.href = '../auth/login.html';
+            return;
+        }
+    }
+
     const loginLinks = document.querySelectorAll('#login-link, #mobile-login-link');
     const logoutLinks = document.querySelectorAll('#logout-link, #mobile-logout-link');
     const adminLinks = document.querySelectorAll('#admin-link, #mobile-admin-link');
 
     if (currentUser) {
+        // Ẩn liên kết "Đăng nhập" và hiển thị "Đăng xuất"
         loginLinks.forEach(link => link.classList.add('hidden'));
         logoutLinks.forEach(link => link.classList.remove('hidden'));
+
+        // Hiển thị liên kết "Admin" nếu người dùng là admin
         if (currentUser.role === 'admin') {
             adminLinks.forEach(link => link.classList.remove('hidden'));
         }
+
+        // Thêm sự kiện đăng xuất
         logoutLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                localStorage.removeItem('currentUser');
-                window.location.href = window.location.pathname.includes('/pages/') ? '../../index.html' : 'index.html';
+                localStorage.removeItem('currentUser'); // Xóa trạng thái đăng nhập
+                window.location.href = '../auth/login.html'; // Chuyển hướng về trang đăng nhập
             });
         });
     } else {
+        // Hiển thị liên kết "Đăng nhập" và ẩn "Đăng xuất"
         loginLinks.forEach(link => link.classList.remove('hidden'));
         logoutLinks.forEach(link => link.classList.add('hidden'));
         adminLinks.forEach(link => link.classList.add('hidden'));

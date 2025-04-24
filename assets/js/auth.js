@@ -7,8 +7,6 @@ window.authUtils = {
         const email = formData.get('email').trim().toLowerCase();
         const fullName = formData.get('fullName').trim();
         const phone = formData.get('phone').trim();
-
-        // Validate inputs
         if (!email || !fullName || !phone || !password || !confirmPassword) {
             alert('Vui lòng nhập đầy đủ thông tin!');
             return;

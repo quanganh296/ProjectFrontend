@@ -11,7 +11,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color:white;
 
+}
+.containerStart p{
+    font-size:24px;
 }
 .Gym{
     width: 100%;

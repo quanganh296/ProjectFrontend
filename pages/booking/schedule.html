@@ -46,32 +46,31 @@
                 <h2 class="text-xl font-bold mb-4 text-blue-600">Đặt lịch mới</h2>
                 <form id="booking-form">
                     <div class="mb-4">
-                        <label for="class-select" class="block text-gray-700 text-sm font-bold mb-2">Chọn lớp học</label>
+                        <label for="class-select" class="block text-gray-700 font-bold mb-2">Chọn lớp học:</label>
                         <select id="class-select" name="class" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                             <option value="">-- Chọn lớp học --</option>
-                            <!-- Options will be loaded by JavaScript -->
+                            <option value="Gym">Gym</option>
+                            <option value="Yoga">Yoga</option>
+                            <option value="Zumba">Zumba</option>
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label for="booking-date" class="block text-gray-700 text-sm font-bold mb-2">Ngày tập</label>
-                        <input type="date" id="booking-date" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        <label for="date-input" class="block text-gray-700 font-bold mb-2">Ngày tập:</label>
+                        <input type="date" id="date-input" name="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                     </div>
-                    <div class="mb-6">
-                        <label for="booking-time" class="block text-gray-700 text-sm font-bold mb-2">Giờ tập</label>
-                        <select id="booking-time" name="time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                    <div class="mb-4">
+                        <label for="time-select" class="block text-gray-700 font-bold mb-2">Giờ tập:</label>
+                        <select id="time-select" name="time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                             <option value="">-- Chọn giờ tập --</option>
-                            <option value="07:00 - 09:00">07:00 - 09:00</option>
-                            <option value="09:00 - 11:00">09:00 - 11:00</option>
+                            <option value="08:00 - 10:00">08:00 - 10:00</option>
+                            <option value="10:00 - 12:00">10:00 - 12:00</option>
                             <option value="14:00 - 16:00">14:00 - 16:00</option>
                             <option value="16:00 - 18:00">16:00 - 18:00</option>
-                            <option value="18:00 - 20:00">18:00 - 20:00</option>
                         </select>
                     </div>
-                    <div class="flex items-center justify-between">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
-                            Đặt lịch
-                        </button>
-                    </div>
+                    <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                        Đặt lịch
+                    </button>
                 </form>
             </div>
             
@@ -136,3 +135,6 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
                     <ul class="text-gray-400">
+                        <script src="../../assets/js/main.js"></script>
+                        <script src="../../assets/js/db.js"></script>
+                        <script src="../../assets/js/schedule.js"></script>

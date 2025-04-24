@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Kiểm tra quyền admin
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (!currentUser || currentUser.role !== 'admin') {
         window.location.href = '../auth/login.html';
@@ -126,7 +125,6 @@ function deleteBooking(id) {
 function editUser(id) {
     alert('Chức năng sửa người dùng: ' + id);
 }
-
 function deleteUser(id) {
     if (confirm('Bạn có chắc chắn muốn xóa người dùng này?')) {
         const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -138,11 +136,9 @@ function deleteUser(id) {
         }
     }
 }
-
 function editClass(id) {
     alert('Chức năng sửa lớp học: ' + id);
 }
-
 function deleteClass(id) {
     alert('Chức năng xóa lớp học: ' + id);
 }

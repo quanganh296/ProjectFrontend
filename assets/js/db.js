@@ -1,65 +1,75 @@
-// db.js - Khởi tạo dữ liệu mẫu cho hệ thống
-
-document.addEventListener('DOMContentLoaded', function() {
-    initializeData();
+document.addEventListener('DOMContentLoaded', function () {
+    DB.init();
+    setupBookingForm();
+    loadBookings(); // Hiển thị lịch đã đặt khi tải trang
 });
 
-// Khởi tạo dữ liệu mẫu
-function initializeData() {
-    // Khởi tạo người dùng mẫu nếu chưa có
-    if (!localStorage.getItem('users')) {
-        const sampleUsers = [
-            {
-                id: '1',
-                username: 'admin',
-                password: 'admin123',
-                email: 'admin@example.com'.toLowerCase(),
-                fullName: 'Admin User',
-                role: 'admin',
-                phone: '0123456789',
-                registeredDate: '2025-01-15'
-            },
-            {
-                id: '2',
-                username: 'user',
-                password: 'user123',
-                email: 'user@example.com'.toLowerCase(),
-                fullName: 'Regular User',
-                role: 'user',
-                phone: '0987654321',
-                registeredDate: '2025-02-20'
-            }
-        ];
-        localStorage.setItem('users', JSON.stringify(sampleUsers));
-    }
+// Xử lý form đặt lịch
+function setupBookingForm() {
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
-    // Khởi tạo dữ liệu đặt lịch mẫu nếu chưa có
-    if (!localStorage.getItem('bookings')) {
-        const today = new Date().toISOString().split('T')[0];
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowDate = tomorrow.toISOString().split('T')[0];
-        
-        const sampleBookings = [
-            {
-                id: '1',
-                userId: '2',
-                date: today,
-                time: '10:00 - 11:00',
-                class: 'Yoga',
-                trainer: 'Emma Wilson',
-                status: 'confirmed'
-            },
-            {
-                id: '2',
-                userId: '2',
-                date: tomorrowDate,
-                time: '15:00 - 16:00',
-                class: 'Gym',
-                trainer: 'John Smith',
-                status: 'confirmed'
+            // Lấy dữ liệu từ form
+            const selectedClass = document.getElementById('class-select').value;
+            const selectedDate = document.getElementById('date-input').value;
+            const selectedTime = document.getElementById('time-select').value;
+
+            if (!selectedClass || !selectedDate || !selectedTime) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
             }
-        ];
-        localStorage.setItem('bookings', JSON.stringify(sampleBookings));
+
+            // Tạo lịch mới
+            const newBooking = {
+                id: Date.now().toString(), // Tạo ID duy nhất
+                service: selectedClass,
+                date: selectedDate,
+                time: selectedTime,
+                name: DB.auth.getCurrentUser().fullName || 'Người dùng',
+                email: DB.auth.getCurrentUser().email,
+                status: 'Chờ xác nhận'
+            };
+
+            // Lưu vào localStorage
+            const bookings = DB.bookings.getAll();
+            bookings.push(newBooking);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
+
+            // Cập nhật giao diện
+            loadBookings();
+            alert('Đặt lịch thành công!');
+            bookingForm.reset(); // Reset form sau khi đặt lịch
+        });
+    }
+}
+
+// Hiển thị lịch đã đặt
+function loadBookings() {
+    const bookings = DB.bookings.getAll();
+    const currentUser = DB.auth.getCurrentUser();
+    const tableBody = document.getElementById('schedule-table-body');
+    const noSchedules = document.getElementById('no-schedules');
+
+    // Lọc lịch của người dùng hiện tại
+    const userBookings = bookings.filter(b => b.email === currentUser.email);
+
+    // Cập nhật giao diện
+    tableBody.innerHTML = '';
+    if (userBookings.length === 0) {
+        noSchedules.classList.remove('hidden');
+    } else {
+        noSchedules.classList.add('hidden');
+        userBookings.forEach(booking => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="py-3 px-4">${booking.service}</td>
+                <td class="py-3 px-4">${booking.date}</td>
+                <td class="py-3 px-4">${booking.time}</td>
+                <td class="py-3 px-4 text-yellow-500 font-medium">${booking.status}</td>
+            `;
+            tableBody.appendChild(row);
+        });
     }
 }
