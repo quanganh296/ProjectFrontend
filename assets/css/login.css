@@ -7,6 +7,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+   
 }
 
 .video-background {
@@ -22,10 +23,11 @@
     z-index: 10;
     max-width: 28rem;
     width: 100%;
+    opacity:0.8;
 }
 
 .headerLogin {
-    background-color: rgb(128, 128, 128,0.9);
+    background-color: rgb(128, 128, 128,0.8);
     color: white;
     padding: 1rem 1.5rem;
 }
@@ -34,3 +36,6 @@
     color: white;
     padding: 10px;
     border-radius: 10px;}
+    .comfirmBtn:hover{
+        background-color: rgb(128, 128, 128,1);
+    }

@@ -8,204 +8,272 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
 </head>
-    <body class="bg-gray-100 font-sans">
-        <!-- Sidebar -->
-        <div class="sidebar bg-gray-800 text-white">
-            <div class="p-4 text-lg font-bold">Admin Dashboard</div>
-            <nav class="mt-4">
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700" id="booking-nav">Quản lý lịch</a>
-                <a href="#" class="block py-2 px-4 hover:bg-gray-700 bg-gray-900" id="service-nav">Quản lý dịch vụ</a>
-                <a href="D:\code\ProjectFrontend\index.html" class="block py-2 px-4 hover:bg-gray-700">Trang chủ</a>
-                <a href="../../pages/auth/login.html" class="block py-2 px-4 hover:bg-gray-700 text-red-400" id="logout-btn">Đăng xuất</a>
-            </nav>
-        </div>
-    
-        <!-- Main Content -->
-        <div class="main-content p-6">
-            <!-- Booking Management Section (Initially Hidden) -->
-            <div id="booking-section" class="hidden">
-                <h1 class="text-2xl font-bold mb-4">Thống kê lịch tập</h1>
-                
-                <!-- Stats Cards -->
-                <div class="grid grid-cols-3 gap-4 mb-6">
-                    <!-- Gym Stats -->
-                    <div class="bg-white p-4 rounded shadow">
-                        <h2 class="font-semibold mb-2">Tổng số lịch Gym</h2>
-                        <div class="text-3xl font-bold" id="gym-count">0</div>
-                    </div>
-                    
-                    <!-- Yoga Stats -->
-                    <div class="bg-white p-4 rounded shadow">
-                        <h2 class="font-semibold mb-2">Tổng số lịch Yoga</h2>
-                        <div class="text-3xl font-bold" id="yoga-count">0</div>
-                    </div>
-                    
-                    <!-- Zumba Stats -->
-                    <div class="bg-white p-4 rounded shadow">
-                        <h2 class="font-semibold mb-2">Tổng số lịch Zumba</h2>
-                        <div class="text-3xl font-bold" id="zumba-count">0</div>
-                    </div>
+<body class="bg-gray-100 font-sans">
+    <!-- Sidebar -->
+    <div class="sidebar bg-gray-800 text-white">
+        <div class="p-4 text-lg font-bold">Admin Dashboard</div>
+        <nav class="mt-4">
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700" id="booking-nav">Quản lý lịch</a>
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700 bg-gray-900" id="service-nav">Quản lý dịch vụ</a>
+            <a href="../../index.html" class="block py-2 px-4 hover:bg-gray-700">Trang chủ</a>
+            <a href="#" class="block py-2 px-4 hover:bg-gray-700 text-red-400" id="logout-btn">Đăng xuất</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content p-6">
+        <!-- Booking Management Section (Initially Hidden) -->
+        <div id="booking-section" class="hidden">
+            <h1 class="text-2xl font-bold mb-4">Thống kê lịch tập</h1>
+            
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="font-semibold mb-2">Tổng số lịch Gym</h2>
+                    <div class="text-3xl font-bold" id="gym-count">0</div>
                 </div>
-                
-                <!-- Chart -->
-                <div class="bg-white p-4 rounded shadow mb-6">
-                    <div class="border-t border-gray-200 pt-4">
-                        <div class="flex justify-center items-center h-64 bg-gray-50">
-                            <div class="flex items-end justify-center space-x-16 w-full h-full px-12" id="booking-chart">
-                                <div class="flex flex-col items-center">
-                                    <div class="w-16 bg-blue-300 rounded-t h-16" id="gym-bar"></div>
-                                    <div class="mt-2">Gym</div>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="w-16 bg-green-300 rounded-t h-32" id="yoga-bar"></div>
-                                    <div class="mt-2">Yoga</div>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="w-16 bg-purple-300 rounded-t h-24" id="zumba-bar"></div>
-                                    <div class="mt-2">Zumba</div>
-                                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="font-semibold mb-2">Tổng số lịch Yoga</h2>
+                    <div class="text-3xl font-bold" id="yoga-count">0</div>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="font-semibold mb-2">Tổng số lịch Zumba</h2>
+                    <div class="text-3xl font-bold" id="zumba-count">0</div>
+                </div>
+            </div>
+            
+            <!-- Chart -->
+            <div class="bg-white p-4 rounded shadow mb-6">
+                <div class="border-t border-gray-200 pt-4">
+                    <div class="flex justify-center items-center h-64 bg-gray-50">
+                        <div class="flex items-end justify-center space-x-16 w-full h-full px-12" id="booking-chart">
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 bg-blue-300 rounded-t h-16" id="gym-bar"></div>
+                                <div class="mt-2">Gym</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 bg-green-300 rounded-t h-32" id="yoga-bar"></div>
+                                <div class="mt-2">Yoga</div>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 bg-purple-300 rounded-t h-24" id="zumba-bar"></div>
+                                <div class="mt-2">Zumba</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Booking Form -->
-                <div class="bg-white p-4 rounded shadow">
-                    <h3 class="font-semibold mb-3">Bộ lọc</h3>
-                    <div class="grid grid-cols-4 gap-4">
-                        <div>
-                            <label class="block text-sm text-gray-600 mb-1">Lớp học</label>
-                            <select class="w-full p-2 border rounded" id="class-filter" title="Chọn lớp học">
-                                <option value="all">Tất cả</option>
-                                <option value="gym">Gym</option>
-                                <option value="yoga">Yoga</option>
-                                <option value="zumba">Zumba</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-600 mb-1">Email</label>
-                            <input type="text" class="w-full p-2 border rounded" placeholder="Tìm theo email" id="email-filter">
-                        </div>
-                        <div>
-                            <label class="block text-sm text-gray-600 mb-1">Ngày</label>
-                            <input type="date" class="w-full p-2 border rounded" id="date-filter" title="Chọn ngày" placeholder="YYYY-MM-DD">
-                        </div>
-                        <div class="flex items-end">
-                            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded w-full" id="apply-filter">Áp dụng</button>
-                        </div>
+            </div>
+            
+            <!-- Booking Form -->
+            <div class="bg-white p-4 rounded shadow">
+                <h3 class="font-semibold mb-3">Bộ lọc</h3>
+                <div class="grid grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Lớp học</label>
+                        <select class="w-full p-2 border rounded" id="class-filter" title="Chọn lớp học">
+                            <option value="all">Tất cả</option>
+                            <option value="gym">Gym</option>
+                            <option value="yoga">Yoga</option>
+                            <option value="zumba">Zumba</option>
+                        </select>
                     </div>
-                </div>
-                
-                <!-- Booking List -->
-                <div class="bg-white rounded shadow mt-6">
-                    <table class="w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="py-3 px-4 text-left">Lớp học</th>
-                                <th class="py-3 px-4 text-left">Ngày giờ</th>
-                                <th class="py-3 px-4 text-left">Khung giờ</th>
-                                <th class="py-3 px-4 text-left">Họ tên</th>
-                                <th class="py-3 px-4 text-left">Email</th>
-                                <th class="py-3 px-4 text-left">Trạng thái</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookings-table-body">
-                            <!-- Bookings will be loaded here -->
-                        </tbody>
-                    </table>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Email</label>
+                        <input type="text" class="w-full p-2 border rounded" placeholder="Tìm theo email" id="email-filter">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-1">Ngày</label>
+                        <input type="date" class="w-full p-2 border rounded" id="date-filter" title="Chọn ngày" placeholder="YYYY-MM-DD">
+                    </div>
+                    <div class="flex items-end">
+                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded w-full" id="apply-filter">Áp dụng</button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Service Management Section -->
-            <div id="service-section">
-                <div class="flex justify-between items-center mb-4">
-                    <h1 class="text-2xl font-bold">Quản lý Dịch vụ</h1>
-                    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="add-service-btn">Thêm dịch vụ mới</button>
-                </div>
-                
-                <!-- Services Table -->
-                <div class="bg-white rounded shadow">
-                    <table class="w-full">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th class="py-3 px-4 text-left">Tên dịch vụ</th>
-                                <th class="py-3 px-4 text-left">Mô tả</th>
-                                <th class="py-3 px-4 text-left">Hình ảnh</th>
-                                <th class="py-3 px-4 text-left">Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="services-table-body">
-                            <!-- Services will be loaded here -->
-                        </tbody>
-                    </table>
-                </div>
+            <!-- Booking List -->
+            <div class="bg-white rounded shadow mt-6">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Lớp học</th>
+                            <th class="py-3 px-4 text-left">Ngày giờ</th>
+                            <th class="py-3 px-4 text-left">Khung giờ</th>
+                            <th class="py-3 px-4 text-left">Họ tên</th>
+                            <th class="py-3 px-4 text-left">Email</th>
+                            <th class="py-3 px-4 text-left">Trạng thái</th>
+                            <th class="py-3 px-4 text-left">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-table-body">
+                        <!-- Bookings will be loaded here -->
+                    </tbody>
+                </table>
             </div>
         </div>
-    
-        <!-- Add Service Modal -->
-        <!-- <div class="modal-overlay hidden" id="add-service-modal">
-            <div class="modal-content">
-                <h2 class="text-xl font-bold mb-4">Thêm dịch vụ mới</h2>
-                <form id="add-service-form">
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">Tên dịch vụ</label>
-                        <input type="text" id="service-name-input" class="w-full p-2 border rounded" required title="Nhập tên dịch vụ" placeholder="Tên dịch vụ">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">Mô tả</label>
-                        <textarea id="service-desc-input" class="w-full p-2 border rounded" rows="4" required title="Nhập mô tả dịch vụ" placeholder="Mô tả dịch vụ"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
-                        <input type="text" id="service-img-input" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" id="cancel-add-btn">Hủy</button>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Lưu</button>
-                    </div>
-                </form>
+        
+        <!-- Service Management Section -->
+        <div id="service-section">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="text-2xl font-bold">Quản lý Dịch vụ</h1>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="add-service-btn">Thêm dịch vụ mới</button>
             </div>
-        </div> -->
-    
-        <!-- Edit Service Modal -->
-        <!-- <div class="modal-overlay hidden" id="edit-service-modal">
-            <div class="modal-content">
-                <h2 class="text-xl font-bold mb-4">Sửa dịch vụ</h2>
-                <form id="edit-service-form">
-                    <input type="hidden" id="edit-service-id">
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">Tên dịch vụ</label>
-                        <input type="text" id="edit-service-name" class="w-full p-2 border rounded" required title="Nhập tên dịch vụ" placeholder="Tên dịch vụ">
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">Mô tả</label>
-                        <textarea id="edit-service-desc" class="w-full p-2 border rounded" rows="4" required title="Nhập mô tả dịch vụ" placeholder="Mô tả dịch vụ"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
-                        <input type="text" id="edit-service-img" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
-                    </div>
-                    <div class="flex justify-end">
-                        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" id="cancel-edit-btn">Hủy</button>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Lưu</button>
-                    </div>
-                </form>
+            
+            <!-- Services Table -->
+            <div class="bg-white rounded shadow">
+                <table class="w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Tên dịch vụ</th>
+                            <th class="py-3 px-4 text-left">Mô tả</th>
+                            <th class="py-3 px-4 text-left">Hình ảnh</th>
+                            <th class="py-3 px-4 text-left">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="services-table-body">
+                        <!-- Services will be loaded here -->
+                    </tbody>
+                </table>
             </div>
         </div>
-     -->
-        <!-- Delete Confirmation Modal -->
-        <!-- <div class="modal-overlay hidden" id="delete-confirm-modal">
-            <div class="modal-content">
-                <h2 class="text-xl font-bold mb-4">Xác nhận xóa</h2>
-                <p class="mb-4">Bạn có chắc chắn muốn xóa dịch vụ này?</p>
-                <div class="flex justify-end">
-                    <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" id="cancel-delete-btn">Hủy</button>
-                    <button type="button" class="bg-red-500 text-white px-4 py-2 rounded" id="confirm-delete-btn">Xóa</button>
-                </div>
-            </div>
-        </div> -->
+    </div>
 
-   
-    <script src="../../assets/js/db.js"></script>
+    <!-- Add Service Modal -->
+    <div class="modal-overlay hidden" id="add-service-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-xl font-bold">Thêm dịch vụ mới</h2>
+            </div>
+            <div class="modal-body">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Tên dịch vụ</label>
+                    <input type="text" id="service-name-input" class="w-full p-2 border rounded" required title="Nhập tên dịch vụ" placeholder="Tên dịch vụ">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Mô tả</label>
+                    <textarea id="service-desc-input" class="w-full p-2 border rounded" rows="4" required title="Nhập mô tả dịch vụ" placeholder="Mô tả dịch vụ"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
+                    <input type="text" id="service-img-input" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-add-btn">Hủy</button>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="save-add-btn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Service Modal -->
+    <div class="modal-overlay hidden" id="edit-service-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-xl font-bold">Sửa dịch vụ</h2>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-service-id">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Tên dịch vụ</label>
+                    <input type="text" id="edit-service-name" class="w-full p-2 border rounded" required title="Nhập tên dịch vụ" placeholder="Tên dịch vụ">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Mô tả</label>
+                    <textarea id="edit-service-desc" class="w-full p-2 border rounded" rows="4" required title="Nhập mô tả dịch vụ" placeholder="Mô tả dịch vụ"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
+                    <input type="text" id="edit-service-img" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-edit-btn">Hủy</button>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="save-edit-btn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay hidden" id="delete-confirm-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-xl font-bold">Xác nhận xóa</h2>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa dịch vụ này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-delete-btn">Hủy</button>
+                <button type="button" class="bg-red-500 text-white px-4 py-2 rounded" id="confirm-delete-btn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Booking Modal -->
+    <div class="modal-overlay hidden" id="edit-booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-xl font-bold">Sửa lịch tập</h2>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-booking-id">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Lớp học</label>
+                    <select id="edit-booking-service" class="w-full p-2 border rounded" required title="Chọn lớp học">
+                        <option value="Gym">Gym</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Zumba">Zumba</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Ngày</label>
+                    <input type="date" id="edit-booking-date" class="w-full p-2 border rounded" required title="Chọn ngày" placeholder="YYYY-MM-DD">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Khung giờ</label>
+                    <input type="text" id="edit-booking-time" class="w-full p-2 border rounded" required placeholder="VD: 08:00 - 10:00">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Họ tên</label>
+                    <input type="text" id="edit-booking-name" class="w-full p-2 border rounded" required title="Nhập họ tên" placeholder="Họ tên">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Email</label>
+                    <input type="email" id="edit-booking-email" class="w-full p-2 border rounded" required title="Nhập email" placeholder="Email">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Trạng thái</label>
+                    <select id="edit-booking-status" class="w-full p-2 border rounded" required title="Chọn trạng thái">
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Chờ xác nhận">Chờ xác nhận</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-edit-booking-btn">Hủy</button>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="save-edit-booking-btn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Booking Confirmation Modal -->
+    <div class="modal-overlay hidden" id="delete-booking-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="text-xl font-bold">Xác nhận xóa lịch tập</h2>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc chắn muốn xóa lịch tập này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-delete-booking-btn">Hủy</button>
+                <button type="button" class="bg-red-500 text-white px-4 py-2 rounded" id="confirm-delete-booking-btn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Script để hoạt động -->
+<script src="D:\code\ProjectFrontend\assets\js\db.js"></script>
 </body>
 </html>

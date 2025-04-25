@@ -6,12 +6,12 @@
     <title>Gym Management System</title>
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="D:\code\ProjectFrontend\assets\css\style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Header/Navbar -->
     <nav class="bg-blue-600 text-white shadow-lg">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="containerHome">
             <a href="index.html" class="text-xl font-bold">Gym Management System</a>
             <div class="hidden md:flex space-x-4" id="nav-links">
                 <a href="index.html" class="hover:text-blue-200">Trang chủ</a>
@@ -37,15 +37,11 @@
     </nav>
 
     <!-- Banner -->
-    <div class="containerStart">
+    <div class="banner">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl font-bold mb-4">Welcome to Our Gym</h1>
             <p class="text-xl mb-8">Transform Your Body, Transform Your Life</p>
-            
-            <div>
-                <a href="pages/auth/register.html" class="startButton">Bắt đầu ngay</a>
-                
-            </div>
+            <a href="pages/auth/register.html" class="startButton" id="start-button">Bắt đầu ngay</a>
         </div>
     </div>
 
@@ -55,9 +51,9 @@
             <h2 class="text-3xl font-bold text-center mb-10">Các lớp học phổ biến</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Class Card 1 -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                <div class="Card">
                     <div class="Gym">
-                        <img src="D:\code\ProjectFrontend\assets\pic\maxresdefault.jpg" alt="Gym" class="w-full h-full object-cover">
+                        <img src="assets/pic/maxresdefault.jpg" alt="Gym" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Gym</h3>
@@ -67,9 +63,9 @@
                 </div>
 
                 <!-- Class Card 2 -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                <div class="Card">
                     <div class="Yoga">
-                      <img src="D:\code\ProjectFrontend\assets\pic\129d13f4f59078bd275f530388118e23.jpg" alt="Yoga" class="w-full h-full object-cover">
+                        <img src="assets/pic/yoga.jpg" alt="Yoga" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Yoga</h3>
@@ -79,9 +75,9 @@
                 </div>
 
                 <!-- Class Card 3 -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                <div class="Card">
                     <div class="Zumba">
-                        <img src="D:\code\ProjectFrontend\assets\pic\7ef967fae24731f1d342cc2c22dbd1e6701e6e6e.png" alt="Zumba" class="w-full h-full object-cover">
+                        <img src="assets/pic/zumba.png" alt="Zumba" class="w-full h-full object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Zumba</h3>
@@ -92,7 +88,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
@@ -107,28 +102,30 @@
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
-                    <p class="text-gray-400">Email: contact@gym.com</p>
+                    <p class="text-gray-400">Email: contact@gym.com contact@gym.com contact@gym.com info@gymsystem.com</p>
                     <p class="text-gray-400">Phone: (123) 456-7890</p>
                     <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
                     <ul class="text-gray-400">
-                        <li class="mb-2"><a href="index.html" class="hover:text-white">Facebook
-                            Instagram
-                            Twitter</a></li>
-                            
+                        <li class="mb-2"><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Instagram</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Twitter</a></li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 Gym Management System. All rights reserved.</p>
+                <p>© 2025 Gym Management System. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+
+
     <!-- JavaScript -->
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/db.js"></script>
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+   
 </body>
 </html>

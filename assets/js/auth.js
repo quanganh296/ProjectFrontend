@@ -47,7 +47,6 @@ window.authUtils = {
 
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
-        alert('Đăng ký thành công! Vui lòng đăng nhập.');
-        window.location.href = 'login.html';
+        window.location.href = "/index.html";
     },
 };

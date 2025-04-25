@@ -49,7 +49,7 @@
                         <p id="profile-fullname" class="text-gray-700"></p>
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email: contact@gym.com contact@gym.com contact@gym.com</label>
                         <p id="profile-email" class="text-gray-700"></p>
                     </div>
                     <div class="mb-4">
@@ -95,16 +95,26 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
-                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                    <p class="text-gray-400">Gym Management - Nơi bạn bắt đầu hành 
+                        trình fitness của mình với các trang 
+                        thiết bị hiện đại và đội ngũ huấn luyện 
+                        viên chuyên nghiệp.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
-                    <p class="text-gray-400">Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84a3bda9b7bdb7b0a1a9eaa7aba9">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Email: contact@gym.com <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c4adaaa2ab84a3bda9b7bdb7b0a1a9eaa7aba9">[email&#160;protected]</a></p>
                     <p class="text-gray-400">Điện thoại: 0123 456 789</p>
                     <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
+                    <h3 class="text-xl font-bold mb-4"> <div>
+                    <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Instagram</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Twitter</a></li>
+                    </ul>
+                </div></h3>
                     <ul class="text-gray-400">
                         <li class="mb-2"><a href="../../index.html" class="hover:text-white">Trang chủ</a></li>
                         <li class="mb-2"><a href="../booking/schedule.html" class="hover:text-white">Đặt lịch tập</a></li>
@@ -128,7 +138,7 @@
             // Kiểm tra đăng nhập
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (!currentUser) {
-                window.location.href = 'D:\code\ProjectFrontend\pages\auth\login.html';
+                window.location.href = '../../pages/auth/login.html';
                 return;
             }
 

@@ -1,27 +1,66 @@
 .sidebar {
-    height: 100vh;
-    position: fixed;
-    width: 240px;
-}
-.main-content {
-    margin-left: 240px;
-}
-.modal-overlay {
+    width: 250px;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    z-index: 10;
+}
+.main-content {
+    margin-left: 250px;
+}
+.modal-overlay {
+    transition: opacity 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Làm tối nền */
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 50;
+    align-items: center;
+    z-index: 1000;
 }
 .modal-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: scale(1);
     background-color: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    width: 500px;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
     max-width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.hidden {
+    display: none;
+}
+button {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+.fade-out {
+    opacity: 0 !important;
+}
+.fade-out .modal-content {
+    opacity: 0;
+    transform: scale(0.95);
+}
+/* Tách biệt container cho thông báo và form */
+.modal-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+.modal-body {
+
+    padding: 0;
+}
+.modal-footer {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
 }

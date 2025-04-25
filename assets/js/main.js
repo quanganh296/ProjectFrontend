@@ -1,82 +1,59 @@
-document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.pathname.includes('login.html')) {
-        const loginForm = document.getElementById('login-form');
-        if (loginForm) {
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = document.getElementById('email').value.trim().toLowerCase();
-                const password = document.getElementById('password').value;
-                const errorMessage = document.getElementById('error-message');
-                const users = JSON.parse(localStorage.getItem('users')) || [];
-                console.log('Email nhập:', email); 
-                console.log('Danh sách users:', users); 
-                if (!users.length) {
-                    errorMessage.textContent = 'Không có người dùng nào trong hệ thống. Vui lòng đăng ký!';
-                    errorMessage.classList.remove('hidden');
-                    return;
-                }
-
-                const user = users.find(u => u.email === email && u.password === password);
-                if (user) {
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    errorMessage.classList.add('hidden');
-                    if (user.role === 'admin') {
-                        window.location.href = '../../pages/admin/dashboard.html';
-                    } else {
-                        window.location.href = 'D:/code/ProjectFrontend/index.html';
-                    }
-                } else {
-                    const emailExists = users.some(u => u.email === email);
-                    errorMessage.textContent = emailExists ? 'Mật khẩu không đúng!' : 'Email không tồn tại!';
-                    errorMessage.classList.remove('hidden');
-                }
-            });
-        }
-    }
+document.addEventListener('DOMContentLoaded', function () {
     updateNavigation();
-});
-function updateNavigation() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    if (!currentUser) {
-        const restrictedPages = ['schedule.html', 'dashboard.html'];
-        const currentPage = window.location.pathname.split('/').pop();
-        if (restrictedPages.includes(currentPage)) {
-            window.location.href = 'D:/code/ProjectFrontend/pages/auth/login.html';
-            return;
-        }
-    }
 
-    const loginLinks = document.querySelectorAll('#login-link, #mobile-login-link');
     const logoutLinks = document.querySelectorAll('#logout-link, #mobile-logout-link');
-    const adminLinks = document.querySelectorAll('#admin-link, #mobile-admin-link');
-
-    if (currentUser) {
-        loginLinks.forEach(link => link.classList.add('hidden'));
-        logoutLinks.forEach(link => link.classList.remove('hidden'));
-        if (currentUser.role === 'admin') {
-            adminLinks.forEach(link => link.classList.remove('hidden'));
-        } else {
-            adminLinks.forEach(link => link.classList.add('hidden'));
-        }
-        logoutLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                localStorage.removeItem('currentUser'); 
-                window.location.href = 'D:/code/ProjectFrontend/pages/auth/login.html'; 
-            });
+    logoutLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser');
+            alert('Bạn đã đăng xuất thành công!');
+            window.location.href = 'pages/auth/login.html';
         });
-    } else {
-        loginLinks.forEach(link => link.classList.remove('hidden'));
-        logoutLinks.forEach(link => link.classList.add('hidden'));
-        adminLinks.forEach(link => link.classList.add('hidden'));
-    }
-}
-document.addEventListener('DOMContentLoaded', function() {
+    });
+
+    // Xử lý nút menu di động
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
+    mobileMenuButton.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+    });
 });
+
+function updateNavigation() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Menu chính
+    const loginLink = document.getElementById('login-link');
+    const logoutLink = document.getElementById('logout-link');
+    const adminLink = document.getElementById('admin-link');
+
+    // Menu di động
+    const mobileLoginLink = document.getElementById('mobile-login-link');
+    const mobileLogoutLink = document.getElementById('mobile-logout-link');
+    const mobileAdminLink = document.getElementById('mobile-admin-link');
+
+    if (currentUser) {
+        // Ẩn "Đăng nhập" và hiển thị "Đăng xuất"
+        loginLink.classList.add('hidden');
+        logoutLink.classList.remove('hidden');
+        mobileLoginLink.classList.add('hidden');
+        mobileLogoutLink.classList.remove('hidden');
+
+        // Hiển thị "Admin" nếu là admin
+        if (currentUser.role === 'admin') {
+            adminLink.classList.remove('hidden');
+            mobileAdminLink.classList.remove('hidden');
+        } else {
+            adminLink.classList.add('hidden');
+            mobileAdminLink.classList.add('hidden');
+        }
+    } else {
+        // Hiển thị "Đăng nhập" và ẩn "Đăng xuất" và "Admin"
+        loginLink.classList.remove('hidden');
+        logoutLink.classList.add('hidden');
+        mobileLoginLink.classList.remove('hidden');
+        mobileLogoutLink.classList.add('hidden');
+        adminLink.classList.add('hidden');
+        mobileAdminLink.classList.add('hidden');
+    }
+}
