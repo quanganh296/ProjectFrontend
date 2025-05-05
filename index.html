@@ -6,19 +6,22 @@
     <title>Gym Management System</title>
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css"> 
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Header/Navbar -->
     <nav class="bg-blue-600 text-white shadow-lg">
         <div class="containerHome">
-            <a href="index.html" class="text-xl font-bold">Gym Management System</a>
-            <div class="hidden md:flex space-x-4" id="nav-links">
-                <a href="index.html" class="hover:text-blue-200">Trang chủ</a>
-                <a href="pages/booking/schedule.html" class="hover:text-blue-200" id="schedule-link">Đặt lịch</a>
-                <a href="pages/auth/login.html" class="hover:text-blue-200" id="login-link">Đăng nhập</a>
-                <a href="#" class="hover:text-blue-200 hidden" id="logout-link">Đăng xuất</a>
-                <a href="pages/admin/dashboard.html" class="hover:text-blue-200 hidden" id="admin-link">Admin</a>
+            <a href="index.html" class="headerText">Gym Management System</a>
+            <div class="hidden md:flex space-x-4 headerText" id="nav-links">
+                <a href="index.html" >Trang chủ</a>
+                <a href="pages/booking/schedule.html"  id="schedule-link">Đặt lịch</a>
+                <a href="pages/auth/login.html" id="login-link">Đăng nhập</a>
+                <a href="#"  id="logout-link">Đăng xuất</a>
+                <a href="pages/admin/dashboard.html"  id="admin-link">Admin</a>
             </div>
             <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -39,8 +42,8 @@
     <!-- Banner -->
     <div class="banner">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">Welcome to Our Gym</h1>
-            <p class="text-xl mb-8">Transform Your Body, Transform Your Life</p>
+            <h1 class="Welcome">Welcome to Our Gym</h1>
+            <p class="nextWelcome">Transform Your Body, Transform Your Life</p>
             <a href="pages/auth/register.html" class="startButton" id="start-button">Bắt đầu ngay</a>
         </div>
     </div>
@@ -58,7 +61,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Gym</h3>
                         <p class="text-gray-600 mb-4">Tập luyện với các thiết bị hiện đại dưới sự hướng dẫn của huấn luyện viên chuyên nghiệp.</p>
-                        <a href="pages/booking/schedule.html?class=gym" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+                        <a href="pages/booking/schedule.html?class=gym" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 class-booking-btn">Đặt lịch</a>
                     </div>
                 </div>
 
@@ -70,7 +73,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Yoga</h3>
                         <p class="text-gray-600 mb-4">Khám phá sự cân bằng và thư giãn tuyệt vời với các bài tập yoga đa dạng.</p>
-                        <a href="pages/booking/schedule.html?class=yoga" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+                        <a href="pages/booking/schedule.html?class=yoga" class="inline-block  text-white px-4 py-2 rounded  transition duration-300 class-booking-btn">Đặt lịch</a>
                     </div>
                 </div>
 
@@ -82,7 +85,9 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Zumba</h3>
                         <p class="text-gray-600 mb-4">Đốt cháy calo với các bài tập nhịp điệu vui nhộn và sôi động.</p>
-                        <a href="pages/booking/schedule.html?class=zumba" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">Đặt lịch</a>
+<!-- Zumba -->
+<a href="pages/booking/schedule.html?class=zumba" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300 class-booking-btn">Đặt lịch</a>
+
                     </div>
                 </div>
             </div>
@@ -102,7 +107,7 @@
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
-                    <p class="text-gray-400">Email: contact@gym.com contact@gym.com contact@gym.com info@gymsystem.com</p>
+                    <p class="text-gray-400">Email: contact@gym.com </p>
                     <p class="text-gray-400">Phone: (123) 456-7890</p>
                     <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
                 </div>
@@ -124,8 +129,9 @@
 
 
     <!-- JavaScript -->
-    <script src="assets/js/db.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/db.js"></script>
+   
    
 </body>
 </html>

@@ -4,6 +4,7 @@ document.getElementById('login-form').addEventListener('submit', function (event
     const email = document.getElementById('email').value.toLowerCase();
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
+  
 
     // Lấy danh sách người dùng từ localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [];
@@ -12,9 +13,11 @@ document.getElementById('login-form').addEventListener('submit', function (event
     const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
 
     if (user) {
-        // Lưu thông tin người dùng vào localStorage
+        // Lưu thông tin người dùng vào localStorage, bao gồm fullName và id
         localStorage.setItem('currentUser', JSON.stringify({
+            id: user.id,
             email: user.email,
+            fullName: user.fullName || 'N/A', // Đảm bảo fullName luôn có giá trị
             role: user.role
         }));
 
@@ -29,10 +32,3 @@ document.getElementById('login-form').addEventListener('submit', function (event
         errorMessage.classList.remove('hidden');
     }
 });
-const currentUser = {
-    id: '1',
-    username: 'admin',
-    role: 'admin'
-};
-localStorage.setItem('currentUser', JSON.stringify(currentUser));
-localStorage.removeItem('currentUser');

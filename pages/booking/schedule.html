@@ -10,12 +10,12 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Header/Navbar -->
-    <nav class="bg-blue-600 text-white shadow-lg">
+    <nav class="header">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <a href="../../index.html" class="headerText">Gym Management System</a>
             <div class="md:flex space-x-4" id="nav-links">
-                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
-                <a href="#" class="hover:text-blue-200" id="logout-link">Đăng xuất</a>
+                <a href="../../index.html" class="text">Trang chủ</a>
+                <a href="#" class="text" id="logout-link">Đăng xuất</a>
             </div>
             <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -32,16 +32,16 @@
 
     <!-- Booking Content -->
     <div class="container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold mb-8 text-center">Quản lý lịch tập</h1>
+        <h1 class="text3">Quản lý lịch tập</h1>
         
         <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
             <!-- User Schedules Panel -->
             <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold text-blue-600">Lịch đã đặt</h2>
+                    <h2 class="text2">Lịch đã đặt</h2>
                     <div class="flex space-x-2">
                         <!-- Đặt lịch mới Button -->
-                        <button id="open-booking-modal" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                        <button id="open-booking-modal" class="newCalender">
                             Đặt lịch mới
                         </button>
                     </div>
@@ -75,8 +75,9 @@
     <!-- Booking Modal -->
     <div id="booking-modal" class="modal-overlay hidden">
         <div class="modal-content">
-            <h2 class="text-xl font-bold mb-4 text-blue-600">Đặt lịch mới</h2>
+            <h2 class="newCelendar">Đặt lịch mới</h2>
             <form id="booking-form">
+                <div id="booking-error" class="text-red-500 text-sm mb-4 hidden"></div>
                 <div class="mb-4">
                     <label for="class-select" class="block text-gray-700 font-bold mb-2">Lớp học:</label>
                     <select id="class-select" name="class" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -118,25 +119,28 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
-                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                    <p class="text-gray-400">Nơi bạn bắt đầu hành trình fitness của mình với các trang thiết bị hiện đại và đội ngũ huấn luyện viên chuyên nghiệp.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
-                    <p class="text-gray-400">Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="22b0c0d2e2c5dfd3cdc7cdc9d8c0c2c5d8">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Email: [email protected]</p>
                     <p class="text-gray-400">Điện thoại: 0123 456 789</p>
                     <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Truy cập nhanh</h3>
                     <ul class="text-gray-400">
-                        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-                        <script src="../../assets/js/db.js"></script>
-                        <script src="../../assets/js/main.js"></script>
-                        <script src="../../assets/js/schedule.js"></script>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Instagram</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Twitter</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/db.js"></script>
+    <script src="../../assets/js/schedule.js"></script>
 </body>
 </html>

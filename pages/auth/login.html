@@ -15,10 +15,10 @@
     <nav class="bg-blue-600 text-white shadow-lg">
        
         <div class="containerHome">
-            <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
+            <a href="../../index.html" class="header">Gym Management System</a>
             <div class="hidden md:flex space-x-4" id="nav-links">
                
-                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="../../index.html" class="loginToHome">Trang chủ</a>
                
                 
                 
@@ -84,7 +84,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
-                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                    <p class="text-gray-400">Nơi bạn bắt đầu hành 
+                        trình fitness của mình với các trang 
+                        thiết bị hiện đại và đội ngũ huấn luyện 
+                        viên chuyên nghiệp.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
@@ -112,6 +115,14 @@
     <script src="../../assets/js/db.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/login.js"></script>
-   
+    <script src="../../assets/js/auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            handleLogin(email, password);
+        });
+    </script>
 </body>
 </html>

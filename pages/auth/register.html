@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-100 font-sans">
     <!-- Header/Navbar -->
-    <nav class="bg-blue-600 text-white shadow-lg">
+    <nav class="headerRegister ">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
             <div class="hidden md:flex space-x-4" id="nav-links">
@@ -42,34 +42,30 @@
             <form id="register-form" class="py-6 px-8">
                 <div class="mb-4">
                     <label for="full-name" class="block text-gray-700 font-bold mb-2">Họ và tên</label>
-                    <input type="text" id="full-name" name="fullName" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <input type="text" id="fullName" name="fullName" required placeholder="Nhập họ và tên" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-                    <input type="email" id="email" name="email" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-700 font-bold mb-2">Số điện thoại</label>
-                    <input type="tel" id="phone" name="phone" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block text-gray-700 font-bold mb-2">Mật khẩu</label>
-                    <input type="password" id="password" name="password" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <input type="password" id="password" name="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="mb-6">
-                    <label for="confirm-password" class="block text-gray-700 font-bold mb-2">Xác nhận mật khẩu</label>
-                    <input type="password" id="confirm-password" name="confirmPassword" required
-                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <label for="confirmPassword" class="block text-gray-700 font-bold mb-2">Xác nhận mật khẩu</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
                 </div>
+            
+                <!-- Vùng hiển thị lỗi -->
+                <div id="register-error" class="text-red-500 mb-4 hidden"></div>
+            
                 <div class="flex items-center justify-between mb-4">
-                    <button href="/index.html" type="submit"
-                        class="comfirmBtn">
-                        Đăng ký
-                    </button>
+                    <button type="submit" class="confirmBtn" href="login.html" >Đăng ký</button>
                 </div>
                 <p class="text-gray-600 text-sm">
                     Đã có tài khoản? <a href="login.html" class="text-blue-600 hover:underline">Đăng nhập</a>
@@ -90,7 +86,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
-                    <p class="text-gray-400">Nền tảng quản lý phòng tập thể dục hiện đại và tiện lợi.</p>
+                    <p class="text-gray-400">Nơi bạn bắt đầu hành trình fitness của mình với các trang thiết bị hiện đại và đội ngũ huấn luyện viên chuyên nghiệp.</p>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
@@ -115,20 +111,73 @@
 
     <!-- JavaScript -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="../../assets/js/db.js"></script>
-    <script src="../../assets/js/main.js"></script>
-    <script src="../../assets/js/auth.js"></script>
+    <script src="../../assets/js/db.js" defer></script>
+    <script src="../../assets/js/auth.js" defer></script>
+    <script src="../../assets/js/main.js" defer></script>
+    <script src="../../assets/js/register.js" defer></script>
+    <script>const registerForm = document.getElementById('register-form');
+
+        if (registerForm) {
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+        
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const phone = document.getElementById('phone').value.trim();
+                const errorDiv = document.getElementById('register-error');
+        
+                // Ẩn lỗi cũ
+                errorDiv.textContent = "";
+                errorDiv.classList.add("hidden");
+        
+                // Kiểm tra email
+                if (!/^\S+@\S+\.\S+$/.test(email)) {
+                    errorDiv.textContent = "Email không hợp lệ";
+                    errorDiv.classList.remove("hidden");
+                    return;
+                }
+        
+                // Kiểm tra mật khẩu trùng khớp
+                if (password !== confirmPassword) {
+                    errorDiv.textContent = "Mật khẩu không khớp";
+                    errorDiv.classList.remove("hidden");
+                    return;
+                }
+        
+                // Kiểm tra số điện thoại
+                if (!/^\d{10,11}$/.test(phone)) {
+                    errorDiv.textContent = "Số điện thoại không hợp lệ";
+                    errorDiv.classList.remove("hidden");
+                    return;
+                }
+        
+                // Kiểm tra email trùng
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                if (users.some(user => user.email === email)) {
+                    errorDiv.textContent = "Email đã tồn tại";
+                    errorDiv.classList.remove("hidden");
+                    return;
+                }
+        
+                // Tạo người dùng mới
+                const newUser = {
+                    id: Date.now().toString(),
+                    fullName,
+                    email,
+                    password,
+                    phone,
+                    role: 'user',
+                };
+        
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+                alert("Đăng ký thành công!");
+                window.location.href = 'login.html';
+            });
+        }</script>
+
     
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const registerForm = document.getElementById('register-form');
-            if (registerForm) {
-                registerForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    window.authUtils.handleRegister(e);
-                });
-            }
-        });
-    </script>
 </body>
 </html>

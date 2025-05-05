@@ -10,7 +10,61 @@
     align-items: center;
     z-index: 1000;
 }
+.modal-delete{
+   
+    background-color: white;
+    border-radius: 5px;
+    padding:60px;
+}
+.modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Assume this is now gap: -10px as per the user report */
+}
 
+/* Fallback from previous fix */
+.modal-footer button:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* Increased specificity from previous fix */
+.modal-overlay .modal-footer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+/* Fallback */
+#delete-confirm-modal .modal-footer button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.modal-header{
+    margin-bottom: 20px;
+}
+.cancelBtn{
+    background-color: #6b7280;
+    color: white;             
+    padding:20px 50px;   
+    border:1px solid grey;
+    border-radius: 0.25rem;
+}
+.corfirmDeleteBtn{
+    background-color: red; 
+    color: white;             
+   padding:20px 50px;
+   border:1px solid red;
+    border-radius: 0.25rem;
+}
+.cancelBtn:hover{
+    background-color:white;
+    color:grey;
+    
+}
+.corfirmDeleteBtn:hover{
+    background-color:white;
+    color:red;
+}
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -19,7 +73,89 @@
     max-width: 90%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+.newCalender{
+    color:white;
+    background-color: grey;
+    padding:10px;
+    border-radius: 5px;
+    border:1px solid grey;
+}
+.headerText{
+    font-size: 30px;
+    font-weight: 700;
+    color:white;
+}
+.text{
+    border:1px solid rgba(128, 128, 128, 0);
+    color:white;
+    font-size: 20px;
+    margin-top:2px;
+    padding:10px;
+   
+    border-radius: 5px;
+}
+.text:hover{
+    transition: 0.5s ;
+    color:grey;
+    background-color: white;
+}
+.text2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: grey;
+    font-size:30px;
+    font-weight: bolder;
+}
+.text3{
+    color:grey;
+    font-size: 1.875rem;   /* text-3xl */  
+    font-weight: 700;      /* font-bold */  
+    margin-bottom: 2rem;   /* mb-8 */  
+    text-align: center; 
+}
+.newCalender:hover{
+   
+    background-color:white;
+    color:grey;
+    transition:  1s ease;
+   
+}
 .hidden {
     display: none;
+}
+.editBtn1, .editBtn2{
+    margin:0 auto;
+    justify-content: space-between;
+    align-items: center;
+    padding:5px 10px;
+    border-radius: 5px;
+}
+.editBtn1{
+    background-color:blue;
+    color:white;
+    border:1px solid blue;
+}
+.editBtn2{
+    background-color:red;
+    color:white;
+    border:1px solid red;
+}
+.editBtn1:hover{
+    background-color:white;
+color:blue;
+transition: 0.5s;   
+}
+.editBtn2:hover{
+    background-color:white;
+color:red;
+transition: 0.5s; 
+}
+.header{
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    gap:10px;
+    padding:10px;
 }

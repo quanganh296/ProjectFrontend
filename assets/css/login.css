@@ -9,7 +9,10 @@
     overflow: hidden;
    
 }
-
+.header{
+    font-size: 1.75rem;  
+    font-weight: 700; 
+}
 .video-background {
     position: absolute;
     width: 100%;
@@ -32,10 +35,24 @@
     padding: 1rem 1.5rem;
 }
 .comfirmBtn{
-    background-color: rgb(128, 128, 128,0.5);
+    background-color: rgb(128, 128, 128);
     color: white;
     padding: 10px;
+    border:1px solid grey;
     border-radius: 10px;}
     .comfirmBtn:hover{
-        background-color: rgb(128, 128, 128,1);
+        transition: 0.5s;
+        background-color: white;
+        color: grey;
+    }
+    .loginToHome{
+        font-size: 20px;
+    margin-top:2px;
+    padding:10px;
+    border-radius: 5px;
+    }
+    .loginToHome:hover{
+        transition: 0.5s;
+        color:grey;
+        background-color: white;
     }

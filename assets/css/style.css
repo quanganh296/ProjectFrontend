@@ -1,7 +1,33 @@
+.Welcome{
+   
+        font-family: "Pacifico", cursive;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 40px;
+      
+      
+}
 
+.nextWelcome{
+    font-size: 2.1rem; 
+margin-bottom: 2rem;
+}
+.class-booking-btn{
+background-color: grey;
+}
+.class-booking-btn:hover{
+    background-color:rgba(128, 128, 128, 0);
+    color:grey;
+    border:1px solid grey;
+}
+.containerText{
+text-align: center;
+justify-content: space-between;
+
+}
 .banner{
-    background-image: url("D:/code/ProjectFrontend/assets/pic/a816367e548d6aab61dcb73cfa8854af38fcac5b.png");
-    padding:20px;
+    background-image: url("../pic/mainpic.png");
+    padding:30px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -12,7 +38,24 @@
     align-items: center;
     flex-direction: column;
     color:white;
+    
 
+}
+.headerText{
+    font-size: 30px;
+    font-weight: 700;
+    color:white;
+}
+.headerText a{
+    font-size: 20px;
+    margin-top:2px;
+    padding:10px;
+    border-radius: 5px;
+}
+.headerText a:hover{
+    color:grey;
+    background-color: white;
+    
 }
 .Card{
     border-radius: 10px;
@@ -23,7 +66,7 @@
     display: flex;
     justify-content: space-between;
     gap:10px;
-    padding:20px;
+    padding:15px;
 
 }
 .Gym img, .Yoga img, .Zumba img  {
@@ -54,16 +97,17 @@
     margin-bottom: 20px;
 }
 .startButton{
-    background-color:rgb(53, 158, 238);
-    color:white;
+    background-color:grey;
     border-radius: 10px;
-    padding:10px;
+    padding:15px;
+    margin-top: 20px; 
 }
 .startButton:hover{
-    background-color:rgba(52, 211, 255, 0.485);
-    color: rgb(255, 255, 255);
+    background-color:rgba(128, 128, 128, 0);
+    color: grey;
+    border:1px solid grey;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 @media screen and (max-width: 768px) {
     .containerStart {

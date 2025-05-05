@@ -13,10 +13,10 @@
     <div class="sidebar bg-gray-800 text-white">
         <div class="p-4 text-lg font-bold">Admin Dashboard</div>
         <nav class="mt-4">
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700" id="booking-nav">Quản lý lịch</a>
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700 bg-gray-900" id="service-nav">Quản lý dịch vụ</a>
-            <a href="../../index.html" class="block py-2 px-4 hover:bg-gray-700">Trang chủ</a>
-            <a href="#" class="block py-2 px-4 hover:bg-gray-700 text-red-400" id="logout-btn">Đăng xuất</a>
+            <a href="#" class="funtionBtn" id="booking-nav">Quản lý lịch</a>
+            <a href="#" class="funtionBtn" id="service-nav">Quản lý dịch vụ</a>
+            <a href="../../index.html" class="funtionBtn">Trang chủ</a>
+            <a href="../../pages/auth/login.html" class="logoutBtn" id="logout-link">Đăng xuất</a>
         </nav>
     </div>
 
@@ -48,15 +48,15 @@
                     <div class="flex justify-center items-center h-64 bg-gray-50">
                         <div class="flex items-end justify-center space-x-16 w-full h-full px-12" id="booking-chart">
                             <div class="flex flex-col items-center">
-                                <div class="w-16 bg-blue-300 rounded-t h-16" id="gym-bar"></div>
+                                <div class="Gymbar" id="gym-bar"></div>
                                 <div class="mt-2">Gym</div>
                             </div>
                             <div class="flex flex-col items-center">
-                                <div class="w-16 bg-green-300 rounded-t h-32" id="yoga-bar"></div>
+                                <div class="Yogabar" id="yoga-bar"></div>
                                 <div class="mt-2">Yoga</div>
                             </div>
                             <div class="flex flex-col items-center">
-                                <div class="w-16 bg-purple-300 rounded-t h-24" id="zumba-bar"></div>
+                                <div class="Zumbabar" id="zumba-bar"></div>
                                 <div class="mt-2">Zumba</div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                         <input type="date" class="w-full p-2 border rounded" id="date-filter" title="Chọn ngày" placeholder="YYYY-MM-DD">
                     </div>
                     <div class="flex items-end">
-                        <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded w-full" id="apply-filter">Áp dụng</button>
+                        <button type="button" class="applyBtn" id="apply-filter">Áp dụng</button>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
         <div id="service-section">
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-2xl font-bold">Quản lý Dịch vụ</h1>
-                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="add-service-btn">Thêm dịch vụ mới</button>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 addBtn" id="add-service-btn">Thêm dịch vụ mới</button>
             </div>
             
             <!-- Services Table -->
@@ -157,6 +157,10 @@
                     <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
                     <input type="text" id="service-img-input" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
                 </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Giá dịch vụ</label>
+                    <input type="number" id="service-price-input" class="w-full p-2 border rounded" required title="Nhập giá dịch vụ" placeholder="Giá dịch vụ">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-add-btn">Hủy</button>
@@ -183,7 +187,11 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm text-gray-600 mb-1">URL Hình ảnh</label>
-                    <input type="text" id="edit-service-img" class="w-full p-2 border rounded" required title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
+                    <input type="text" id="edit-service-img" class="w-full p-2 border rounded" title="Nhập URL hình ảnh" placeholder="URL hình ảnh">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-600 mb-1">Xem trước hình ảnh</label>
+                    <img id="edit-image-preview" class="w-32 h-32 object-cover rounded"  alt="Xem trước hình ảnh"/>
                 </div>
             </div>
             <div class="modal-footer">
@@ -208,14 +216,13 @@
             </div>
         </div>
     </div>
-
     <!-- Edit Booking Modal -->
     <div class="modal-overlay hidden" id="edit-booking-modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="text-xl font-bold">Sửa lịch tập</h2>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="edit-booking-modal-form">
                 <input type="hidden" id="edit-booking-id">
                 <div class="mb-4">
                     <label class="block text-sm text-gray-600 mb-1">Lớp học</label>
@@ -274,6 +281,8 @@
     </div>
 
 <!-- Script để hoạt động -->
-<script src="D:\code\ProjectFrontend\assets\js\db.js"></script>
+
+<script src="../../assets/js/db.js"></script>
+
 </body>
 </html>
