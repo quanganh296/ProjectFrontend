@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function editService(id) {
-    alert(`Sửa dịch vụ ID: ${id}`);
+     showNotification(`Sửa dịch vụ ID: ${id}`);
 }
 
 function deleteService(id) {
     if (confirm('Bạn có chắc chắn muốn xóa dịch vụ này?')) {
-        alert(`Xóa dịch vụ ID: ${id}`);
+         showNotification(`Xóa dịch vụ ID: ${id}`);
     }
 }

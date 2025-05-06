@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.edit-user-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.getAttribute('data-id');
-                    alert('Chức năng sửa người dùng: ' + id);
+                     showNotification('Chức năng sửa người dùng: ' + id);
                 });
             });
 
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('services', JSON.stringify(services));
                 location.reload();
             } else {
-                alert('Vui lòng nhập đầy đủ thông tin!');
+                 showNotification('Vui lòng nhập đầy đủ thông tin!');
             }
         });
     }

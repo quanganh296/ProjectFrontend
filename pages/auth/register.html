@@ -14,7 +14,7 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="../../index.html" class="text-xl font-bold">Gym Management System</a>
             <div class="hidden md:flex space-x-4" id="nav-links">
-                <a href="../../index.html" class="hover:text-blue-200">Trang chủ</a>
+                <a href="../../index.html" class="homeBtn">Trang chủ</a>
                
             </div>
             <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
@@ -115,68 +115,7 @@
     <script src="../../assets/js/auth.js" defer></script>
     <script src="../../assets/js/main.js" defer></script>
     <script src="../../assets/js/register.js" defer></script>
-    <script>const registerForm = document.getElementById('register-form');
-
-        if (registerForm) {
-            registerForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-        
-                const fullName = document.getElementById('fullName').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                const phone = document.getElementById('phone').value.trim();
-                const errorDiv = document.getElementById('register-error');
-        
-                // Ẩn lỗi cũ
-                errorDiv.textContent = "";
-                errorDiv.classList.add("hidden");
-        
-                // Kiểm tra email
-                if (!/^\S+@\S+\.\S+$/.test(email)) {
-                    errorDiv.textContent = "Email không hợp lệ";
-                    errorDiv.classList.remove("hidden");
-                    return;
-                }
-        
-                // Kiểm tra mật khẩu trùng khớp
-                if (password !== confirmPassword) {
-                    errorDiv.textContent = "Mật khẩu không khớp";
-                    errorDiv.classList.remove("hidden");
-                    return;
-                }
-        
-                // Kiểm tra số điện thoại
-                if (!/^\d{10,11}$/.test(phone)) {
-                    errorDiv.textContent = "Số điện thoại không hợp lệ";
-                    errorDiv.classList.remove("hidden");
-                    return;
-                }
-        
-                // Kiểm tra email trùng
-                let users = JSON.parse(localStorage.getItem('users')) || [];
-                if (users.some(user => user.email === email)) {
-                    errorDiv.textContent = "Email đã tồn tại";
-                    errorDiv.classList.remove("hidden");
-                    return;
-                }
-        
-                // Tạo người dùng mới
-                const newUser = {
-                    id: Date.now().toString(),
-                    fullName,
-                    email,
-                    password,
-                    phone,
-                    role: 'user',
-                };
-        
-                users.push(newUser);
-                localStorage.setItem('users', JSON.stringify(users));
-                alert("Đăng ký thành công!");
-                window.location.href = 'login.html';
-            });
-        }</script>
+    
 
     
 </body>

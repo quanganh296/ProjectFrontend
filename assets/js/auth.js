@@ -22,7 +22,7 @@ logoutLinks.forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('currentUser');
-        alert('Bạn đã đăng xuất thành công!');
+     
         window.location.href = '/code/ProjectFrontend/pages/auth/login.html';
     });
 });
@@ -31,39 +31,46 @@ const registerForm = document.getElementById('register-form');
 if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
         e.preventDefault();
-
+    
         const fullName = document.getElementById('fullName').value.trim();
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const phone = document.getElementById('phone').value.trim();
         const errorDiv = document.getElementById('register-error');
-
+    
         // Ẩn lỗi cũ
         errorDiv.textContent = "";
         errorDiv.classList.add("hidden");
-
+       // Kiểm tra tên chỉ chứa chữ cái
+// if (!/^[a-zA-Z\s]+$/.test(fullName)) {
+//     errorDiv.textContent = "Tên chỉ được chứa chữ cái và khoảng trắng";
+//     errorDiv.classList.remove("hidden");
+//     return;
+// }
         // Kiểm tra email
         if (!/^\S+@\S+\.\S+$/.test(email)) {
             errorDiv.textContent = "Email không hợp lệ";
             errorDiv.classList.remove("hidden");
             return;
         }
-
+        if (password.length < 8) {
+            errorDiv.textContent = "Mật khẩu phải có ít nhất 8 ký tự";
+            errorDiv.classList.remove("hidden");
+            return;
+        }
         // Kiểm tra mật khẩu trùng khớp
         if (password !== confirmPassword) {
             errorDiv.textContent = "Mật khẩu không khớp";
             errorDiv.classList.remove("hidden");
             return;
         }
-
         // Kiểm tra số điện thoại
         if (!/^\d{10,11}$/.test(phone)) {
-            errorDiv.textContent = "Số điện thoại không hợp lệ";
+            errorDiv.textContent = "Số điện thoại chỉ được chứa số và phải có độ dài từ 10 đến 11 ký tự";
             errorDiv.classList.remove("hidden");
             return;
         }
-
         // Kiểm tra email trùng
         let users = JSON.parse(localStorage.getItem('users')) || [];
         if (users.some(user => user.email === email)) {
@@ -71,7 +78,13 @@ if (registerForm) {
             errorDiv.classList.remove("hidden");
             return;
         }
-
+        // Kiểm tra số điện thoại trùng
+        if (users.some(user => user.phone === phone)) {
+            errorDiv.textContent = "Số điện thoại đã tồn tại";
+            errorDiv.classList.remove("hidden");
+            return;
+        }
+    
         // Tạo người dùng mới
         const newUser = {
             id: Date.now().toString(),
@@ -81,10 +94,11 @@ if (registerForm) {
             phone,
             role: 'user',
         };
-
+    
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
-        alert("Đăng ký thành công!");
+    
+        // Chuyển hướng đến trang đăng nhập
         window.location.href = 'login.html';
     });
 }

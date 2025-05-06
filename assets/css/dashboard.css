@@ -1,16 +1,30 @@
 /* Sidebar */
 .sidebar {
+    opacity:0.8;
     width: 250px;
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     z-index: 10;
+    background-color: #4F494B; 
+    color: white;
 }
 .main-content {
-    margin-left: 250px;
+    margin-left: 250px; 
+    height:100%;  
 }
-
+.video-background {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    z-index: -1;
+    pointer-events: none; 
+    
+}
 /* Service Image */
 .describe {
     width: 100px;
@@ -73,15 +87,15 @@
 
 /* Biểu đồ */
 .Gymbar {
-    background-color: #93C5FD;
+    background-color: #757575;
     width: 100px;
 }
 .Yogabar {
-    background-color: #86EFAC;
+    background-color: #616161;
     width: 100px;
 }
 .Zumbabar {
-    background-color: #D8B4FE;
+    background-color: #424242;
     width: 100px;
 }
 
@@ -101,50 +115,63 @@
 
 /* Button sửa, xóa đẹp hơn */
 .action-btn {
-    border:1px solid blue;
-    background-color: blue;
+    opacity:0.8;
+    border:1px solid #084982;
+    background-color: #2580ce;
     padding: 10px;
     font-size: 14px;
     border-radius: 6px;
 }
 .action-btn:hover{
-    background-color: white;
-    color:blue;
+    opacity:0.8;
+    transition: 0.5s;
+    background-color: #4193dc;
+    color:#084982;
     cursor: pointer;
 }
 .delete-btn {
-    border:1px solid grey;
-    background-color: grey;
+    opacity:0.8;
+    border:1px solid rgb(31, 30, 30);
+    background-color: #616161;
+    
     padding: 10px;
     font-size: 14px;
     border-radius: 6px;
 }
 .delete-btn:hover{
-    background-color: white;
-    color:grey;
+    opacity:0.8;
+    transition: 0.5s;
+    background-color: grey;
+    color:rgb(20, 19, 19);
     cursor: pointer;
 }
 
+
 .addBtn{
+    opacity:0.8;
     border-radius: 5px;
-    border:1px solid blue;
-    background-color: blue;
+    border:1px solid grey;
+    background-color: #616161;
 }
 .addBtn:hover{
-    background-color: white;
-    color:blue;
+    opacity:0.8;
+    transition: 0.5s;
+    background-color: rgba(128, 128, 128, 0.305);
+    color:rgb(20, 19, 19);
     cursor: pointer;
 }
 .logoutBtn{
+    
     display: block;
   padding-top: 0.5rem;   
   padding-bottom: 0.5rem;
   padding-left: 1rem;     
   padding-right: 1rem;
   color: #f87171;        
-  transition:  0.5s ;
+
 }
 .logoutBtn:hover{
+    transition: 0.5s;
     background-color: #f87171;
     color: white;
     cursor: pointer;
@@ -157,9 +184,10 @@
     padding-right: 1rem;
     background-color: #11182700;  /* bg-gray-900 */
     cursor: pointer;
-    transition: 0.5s ;
+    
 }
 .funtionBtn:hover{
+    transition: 0.5s;
     background-color:white;
     color:#111827;
  
@@ -169,23 +197,26 @@
     color: #111827;
 }
 .applyBtn{
-    background-color: #3b82f6;  
-    color: white;  
-    border:1px solid #3b82f6;           
+    opacity:0.8;
+    border-radius: 5px;
+    border:1px solid grey;
+    background-color: #616161;  
+    color: white;            
     padding-left: 1rem;        
     padding-right: 1rem;
     padding-top: 0.5rem;        
-    padding-bottom: 0.5rem;
-    border-radius: 0.375rem;    
+    padding-bottom: 0.5rem;   
     width: 100%;               
     cursor: pointer;
     display: inline-block;
     text-align: center;
 }
 .applyBtn:hover{
-    background-color: white;
-    color:#3b82f6; 
-    cursor:pointer;
+    opacity:0.8;
+    transition: 0.5s;
+    background-color: rgba(128, 128, 128, 0.305);
+    color:rgb(20, 19, 19);
+    cursor: pointer;
 }
 .editBtn{
     background-color: #3b82f6;  
@@ -203,13 +234,14 @@
     text-align: center;
 }
 .editBtn:hover{
-    background-color:white;
-    color:#3b82f6;
+    transition: 0.5s;
+    background-color:#3b82f6;
+    color:#0260f7;
    
     cursor:pointer;
 }
 .deleteBtn{
-    background-color: #ef4444;  
+    background-color: #616161;  
     color: white;              
     padding-left: 0.75rem;     
     padding-right: 0.75rem;
@@ -217,10 +249,102 @@
     padding-bottom: 0.25rem;
     border-radius: 0.375rem;   
     cursor: pointer;
+    border:1px solid grey;
     display: inline-block;
     text-align: center;
 }
 .deleteBtn:hover{
-    background-color: white;  
-    color: #ef4444;
+    transition: 0.5s;
+    background-color: grey;  
+    color: white;}
+.cancelBtn{
+    background-color: #6b7280; 
+    color: white;
+    border:1px solid grey;
+    padding-left: 1rem;  
+    padding-right: 1rem;  
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem; 
+    border-radius: 0.25rem; 
+}
+.cancelBtn:hover{
+    transition:0.5s;
+    background-color:white;
+color:grey;
+cursor:pointer;
+}
+.saveBtn{
+    background-color: #3b82f6;
+    color: white;
+    border:1px solid #3b82f6;
+    padding-left: 1rem;     
+    padding-right: 1rem;   
+    padding-top: 0.5rem;   
+    padding-bottom: 0.5rem;
+    border-radius: 0.25rem;
+}
+.saveBtn:hover{
+    transition: 0.5s;
+    background-color:white;
+    color:#3b82f6;
+    cursor:pointer;
+}
+.barContent{
+    padding: 1rem;        
+  font-size: 1.125rem;   
+  font-weight: 700;
+}
+body{
+    height:725px;
+    background-color:#7575756a; 
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.card{
+    opacity:0.8;
+    background-color:#9E9E9E;    
+    border-radius: 0.25rem;         
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgb(0, 0, 0);
+    padding:10px; 
+}
+.cardChart{opacity:0.8;
+    background-color:#9E9E9E;    
+    border-radius: 0.25rem;         
+    box-shadow: 0 1px 3px rgb(0, 0, 0), 0 1px 2px rgb(0, 0, 0);
+   padding: 10px;
+}
+.cardChartOutline{opacity:0.8;
+    background-color: #9E9E9E;     
+  padding: 1rem;                  
+  border-radius: 0.25rem;         
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); 
+  margin-bottom: 1.5rem;  
+}
+.cardChartInside{opacity:0.9;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;              
+  background-color: #9E9E9E; 
+}
+.bookingBox{opacity:0.8;
+    background-color: #9E9E9E;    
+    padding: 1rem;                 
+    border-radius: 0.25rem;         
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgb(0, 0, 0);
+}
+.bookingListBox{opacity:0.8;
+    background-color: #9E9E9E;     
+    padding: 1rem;                  
+    border-radius: 0.25rem;        
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgb(0, 0, 0);
+}
+.bookingListHead{opacity:0.8;
+    background-color: #CFCFCF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgb(0, 0, 0);
+    border:1px solid #9E9E9E;
+}
+tr,th{
+
+  object-fit: fill;
 }

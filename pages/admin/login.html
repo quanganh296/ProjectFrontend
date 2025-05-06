@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Gym Management System</title>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+    
+    <!-- Header/Navbar -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+       
+        <div class="containerHome">
+            <a href="../../index.html" class="header">Gym Management System</a>
+            <div class="hidden md:flex space-x-4" id="nav-links">
+               
+                <a href="../../index.html" class="loginToHome">Trang chủ</a>
+               
+                
+                
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-button" title="Toggle mobile menu">
+                
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-blue-500 pb-2" id="mobile-menu">
+            
+            <a href="../../index.html" class="block px-4 py-2 hover:bg-blue-600">Trang chủ</a>
+            <a href="../booking/schedule.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-schedule-link">Đặt lịch</a>
+            <a href="login.html" class="block px-4 py-2 hover:bg-blue-600" id="mobile-login-link">Đăng nhập</a>
+            <a href="#" class="block px-4 py-2 hover:bg-blue-600 hidden" id="mobile-logout-link">Đăng xuất</a>
+          
+        </div>
+    </nav>
+    <div class="login-container">
+        <!-- Login Form -->
+        <div class="login-form-container">
+            <div class="bg-white bg-opacity-90 rounded-lg overflow-hidden shadow-lg">
+                <div class="headerLogin">
+                    <h2 class="text-xl font-bold">Đăng nhập</h2>
+                </div>
+                <form id="login-form" class="px-6 py-8">
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                        <input type="email" id="email" name="email" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p id="email-error" class="text-red-500 text-sm mt-1 hidden"></p>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Mật khẩu:</label>
+                        <input type="password" id="password" name="password" required
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <p id="password-error" class="text-red-500 text-sm mt-1 hidden"></p>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <button href="/index.html" type="submit" id="login-btn"
+                            class="comfirmBtn">
+                            Đăng nhập
+                        </button>
+                        <a href="register.html" class="inline-block align-baseline font-bold text-sm text-blue-600 hover:text-blue-800">
+                            Chưa có tài khoản? Đăng ký
+                        </a>
+                    </div>
+                    <div id="error-message" class="text-red-500 text-sm mt-2 hidden"></div>
+                </form>
+            </div>
+        </div>
+        <video autoplay muted loop class="video-background">
+            <source src="../../assets/pic/ae18844be57a1e8415d1da00282249ec.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Gym Management System</h3>
+                    <p class="text-gray-400">Nơi bạn bắt đầu hành 
+                        trình fitness của mình với các trang 
+                        thiết bị hiện đại và đội ngũ huấn luyện 
+                        viên chuyên nghiệp.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Liên hệ</h3>
+                    <p class="text-gray-400">Email: contact@gym.com <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="315c5b535a7156485c42484245545c1f525e5c">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Điện thoại: 0123 456 789</p>
+                    <p class="text-gray-400">Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Theo dõi chúng tôi</h3>
+                    <ul class="text-gray-400">
+                        <li class="mb-2"><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Instagram</a></li>
+                        <li class="mb-2"><a href="#" class="hover:text-white">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>© 2025 Gym Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="../../assets/js/db.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/login.js"></script>
+    <script src="../../assets/js/auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            handleLogin(email, password);
+        });
+    </script>
+</body>
+</html>

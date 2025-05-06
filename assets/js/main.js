@@ -128,6 +128,6 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
     bookings.push(newBooking);
     localStorage.setItem('bookings', JSON.stringify(bookings));
 
-    alert('Đặt lịch thành công!');
+     showNotification('Đặt lịch thành công!');
     location.reload(); // hoặc ẩn modal và cập nhật bảng
 });

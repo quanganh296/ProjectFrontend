@@ -41,3 +41,26 @@
     background-color:white;
     color:grey;
 }
+#notification {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.homeBtn{
+    background-color: rgba(128, 128, 128, 0);
+    color:white;
+  
+    padding:10px;
+    border-radius: 5px;
+   
+}
+.homeBtn:hover{
+    transition:0.5s;
+    background-color: white;
+    color:grey;
+}

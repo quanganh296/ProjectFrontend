@@ -273,6 +273,6 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
     bookings.push(newBooking);
     localStorage.setItem('bookings', JSON.stringify(bookings));
 
-    alert('Đặt lịch thành công!');
+     showNotification('Đặt lịch thành công!');
     window.location.href = 'schedule.html';
 });

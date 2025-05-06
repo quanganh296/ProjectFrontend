@@ -8,10 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
 </head>
-<body class="bg-gray-100 font-sans">
-    <!-- Sidebar -->
-    <div class="sidebar bg-gray-800 text-white">
-        <div class="p-4 text-lg font-bold">Admin Dashboard</div>
+<body>
+    <!-- Sidebar --> 
+       <video autoplay muted loop class="video-background">
+        <source src="../../assets/pic/rain.mp4" type="video/mp4">
+    </video>
+    <div class="sidebar">
+        <div class="barContent">Admin Dashboard</div>
         <nav class="mt-4">
             <a href="#" class="funtionBtn" id="booking-nav">Quản lý lịch</a>
             <a href="#" class="funtionBtn" id="service-nav">Quản lý dịch vụ</a>
@@ -22,30 +25,31 @@
 
     <!-- Main Content -->
     <div class="main-content p-6">
+        
         <!-- Booking Management Section (Initially Hidden) -->
         <div id="booking-section" class="hidden">
             <h1 class="text-2xl font-bold mb-4">Thống kê lịch tập</h1>
             
             <!-- Stats Cards -->
             <div class="grid grid-cols-3 gap-4 mb-6">
-                <div class="bg-white p-4 rounded shadow">
+                <div class="card">
                     <h2 class="font-semibold mb-2">Tổng số lịch Gym</h2>
                     <div class="text-3xl font-bold" id="gym-count">0</div>
                 </div>
-                <div class="bg-white p-4 rounded shadow">
+                <div class="card">
                     <h2 class="font-semibold mb-2">Tổng số lịch Yoga</h2>
                     <div class="text-3xl font-bold" id="yoga-count">0</div>
                 </div>
-                <div class="bg-white p-4 rounded shadow">
+                <div class="card">
                     <h2 class="font-semibold mb-2">Tổng số lịch Zumba</h2>
                     <div class="text-3xl font-bold" id="zumba-count">0</div>
                 </div>
             </div>
             
             <!-- Chart -->
-            <div class="bg-white p-4 rounded shadow mb-6">
-                <div class="border-t border-gray-200 pt-4">
-                    <div class="flex justify-center items-center h-64 bg-gray-50">
+            <div class="cardChartOutline">
+                <div class="cardChart">
+                    <div class="cardChartInside">
                         <div class="flex items-end justify-center space-x-16 w-full h-full px-12" id="booking-chart">
                             <div class="flex flex-col items-center">
                                 <div class="Gymbar" id="gym-bar"></div>
@@ -65,7 +69,7 @@
             </div>
             
             <!-- Booking Form -->
-            <div class="bg-white p-4 rounded shadow">
+            <div class="bookingBox">
                 <h3 class="font-semibold mb-3">Bộ lọc</h3>
                 <div class="grid grid-cols-4 gap-4">
                     <div>
@@ -92,9 +96,9 @@
             </div>
             
             <!-- Booking List -->
-            <div class="bg-white rounded shadow mt-6">
+            <div class="bookingListBox mt-6">
                 <table class="w-full">
-                    <thead class="bg-gray-50">
+                    <thead class="bookingListHead">
                         <tr>
                             <th class="py-3 px-4 text-left">Lớp học</th>
                             <th class="py-3 px-4 text-left">Ngày giờ</th>
@@ -120,9 +124,9 @@
             </div>
             
             <!-- Services Table -->
-            <div class="bg-white rounded shadow">
+            <div class="bookingBox">
                 <table class="w-full">
-                    <thead class="bg-gray-50">
+                    <thead class="bookingListHead">
                         <tr>
                             <th class="py-3 px-4 text-left">Tên dịch vụ</th>
                             <th class="py-3 px-4 text-left">Mô tả</th>
@@ -133,9 +137,13 @@
                     <tbody id="services-table-body">
                         <!-- Services will be loaded here -->
                     </tbody>
+                   
                 </table>
+             
             </div>
+            
         </div>
+       
     </div>
 
     <!-- Add Service Modal -->
@@ -195,8 +203,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-edit-btn">Hủy</button>
-                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="save-edit-btn">Lưu</button>
+                <button type="button" class="cancelBtn" id="cancel-edit-btn">Hủy</button>
+                <button type="button" class="saveBtn" id="save-edit-btn">Lưu</button>
             </div>
         </div>
     </div>
@@ -258,8 +266,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-edit-booking-btn">Hủy</button>
-                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" id="save-edit-booking-btn">Lưu</button>
+                <button type="button" class="cancelBtn" id="cancel-edit-booking-btn">Hủy</button>
+                <button type="button" class="saveBtn" id="save-edit-booking-btn">Lưu</button>
             </div>
         </div>
     </div>
@@ -277,9 +285,10 @@
                 <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-delete-booking-btn">Hủy</button>
                 <button type="button" class="bg-red-500 text-white px-4 py-2 rounded" id="confirm-delete-booking-btn">Xóa</button>
             </div>
+            
         </div>
     </div>
-
+ 
 <!-- Script để hoạt động -->
 
 <script src="../../assets/js/db.js"></script>

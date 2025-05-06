@@ -606,7 +606,7 @@ DB.bookings.add = function(booking) {
     // Check for duplicates before adding
     if (isDuplicateBooking(booking, bookings)) {
         console.warn('Duplicate booking detected, not adding:', booking);
-        alert('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
+         showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
         return null; // Do not add the duplicate booking
     }
 
@@ -617,15 +617,15 @@ DB.bookings.add = function(booking) {
     return booking;
 };
 
-// Override DB.bookings.update to prevent duplicates
+
 DB.bookings.update = function(updatedBooking) {
     let bookings = this.getAll();
     
-    // Check for duplicates before updating
+  
     if (isDuplicateBooking(updatedBooking, bookings)) {
         console.warn('Duplicate booking detected, not updating:', updatedBooking);
-        alert('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
-        return false; // Do not update if it creates a duplicate
+         showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
+        return false; 
     }
 
     const index = bookings.findIndex(booking => booking.id === updatedBooking.id);
@@ -833,7 +833,7 @@ function updateAddImagePreview() {
         imagePreview.onerror = () => {
             imagePreview.src = '';
             imagePreview.style.display = 'none';
-        alert('Không thể tải hình ảnh từ URL này.');
+       
     }
 }
 const preview = document.getElementById('edit-image-preview');
@@ -844,7 +844,7 @@ const preview = document.getElementById('edit-image-preview');
             preview.onerror = () => {
                 preview.src = '';
                 preview.style.display = 'none';
-                alert('Không thể tải hình ảnh từ URL này.');
+              
             };
         } else {
             preview.src = '';
@@ -891,7 +891,7 @@ document.getElementById('save-edit-btn').addEventListener('click', function () {
         hideModal('edit-service-modal');
         loadServices();
     } else {
-        alert('Vui lòng điền đầy đủ thông tin!');
+        showNotification('Vui lòng điền đầy đủ thông tin!', 'error');
     }
     // Cập nhật dịch vụ trong DB
     DB.services.update(serviceId, updatedService);
@@ -972,7 +972,7 @@ function updateBookingStats(bookings) {
         } else {
             gymBar.style.display = 'block';
             gymBar.style.height = `${(gymCount / maxCount) * maxHeight}px`;
-            gymBar.style.backgroundColor = '#93C5FD';
+            gymBar.style.backgroundColor = '#757575';
             gymBar.style.width = '100px';
         }
 
@@ -982,7 +982,7 @@ function updateBookingStats(bookings) {
         } else {
             yogaBar.style.display = 'block';
             yogaBar.style.height = `${(yogaCount / maxCount) * maxHeight}px`;
-            yogaBar.style.backgroundColor = '#86EFAC';
+            yogaBar.style.backgroundColor = '#616161';
             yogaBar.style.width = '100px';
         }
 
@@ -992,7 +992,7 @@ function updateBookingStats(bookings) {
         } else {
             zumbaBar.style.display = 'block';
             zumbaBar.style.height = `${(zumbaCount / maxCount) * maxHeight}px`;
-            zumbaBar.style.backgroundColor = '#D8B4FE';
+            zumbaBar.style.backgroundColor = '#424242';
             zumbaBar.style.width = '100px';
             zumbaBar.style.minHeight = '10px'; // Ensure visibility if height is small
         }
@@ -1008,4 +1008,21 @@ function updateBookingStats(bookings) {
         zumbaBarDisplay: zumbaBar ? zumbaBar.style.display : 'Not found',
         zumbaBarHeight: zumbaBar ? zumbaBar.style.height : 'Not found'
     });
+}
+function showNotification(message, type = 'info') {
+    const notification = document.getElementById('notification');
+    if (!notification) return;
+
+    // Đặt nội dung thông báo
+    notification.textContent = message;
+
+    // Thêm lớp kiểu thông báo (info, success, error)
+    notification.className = `fixed top-4 right-4 px-4 py-2 rounded shadow-lg show ${
+        type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+    }`;
+
+    // Hiển thị thông báo
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000); // Ẩn sau 3 giây
 }

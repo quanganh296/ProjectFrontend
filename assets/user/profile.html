@@ -191,7 +191,7 @@
                     users[userIndex].phone = phone;
                     localStorage.setItem('users', JSON.stringify(users));
                     localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
-                    alert('Cập nhật hồ sơ thành công!');
+                     showNotification('Cập nhật hồ sơ thành công!');
                     window.location.reload();
                 } else {
                     errorMessage.textContent = 'Lỗi: Không tìm thấy người dùng!';
