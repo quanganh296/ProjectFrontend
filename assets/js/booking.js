@@ -221,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
     // Hiển thị danh sách lịch và người dùng ban đầu
     displayBookings();
     displayUsers();

@@ -1,23 +1,22 @@
 (function createDefaultAdmin() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const adminExists = users.some(user => user.email === 'admin@example.com');
+    const defaultAdmin = {
+        id: "1",
+        email: "admin@example.com",
+        fullName: "Admin User",
+        password: "admin123",
+        role: "admin",
+        phone: "",
+        username: "admin@example.com",
+        registeredDate: new Date().toISOString().split('T')[0]
+    };
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+    const adminExists = users.some(user => user.email === defaultAdmin.email);
 
     if (!adminExists) {
-        const adminUser = {
-            id: "1",
-            email: "admin@example.com",
-            fullName: "Admin User",
-            password: "admin123", 
-            role: "admin",
-            phone: "",
-            username: "admin@example.com",
-            registeredDate: new Date().toISOString().split('T')[0]
-        };
-        users.push(adminUser);
+        users.push(defaultAdmin);
         localStorage.setItem('users', JSON.stringify(users));
     }
 })();
-
 const logoutLinks = document.querySelectorAll('#logout-link, #mobile-logout-link');
 logoutLinks.forEach(link => {
     link.addEventListener('click', function (e) {
@@ -26,9 +25,7 @@ logoutLinks.forEach(link => {
         window.location.href = '/code/ProjectFrontend/pages/auth/login.html';
     });
 });
-
 const registerForm = document.getElementById('register-form');
-
 if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -45,48 +42,73 @@ if (registerForm) {
 
         // Kiểm tra tên chỉ chứa chữ cái, khoảng trắng và ký tự có dấu tiếng Việt
         if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(fullName)) {
-            errorDiv.textContent = "Tên chỉ được chứa chữ cái, khoảng trắng và ký tự có dấu tiếng Việt";
-            errorDiv.classList.remove("hidden");
-            return;
+            try {
+                throw new Error("Tên chỉ được chứa chữ cái, khoảng trắng và ký tự có dấu tiếng Việt");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            }
         }
 
         // Kiểm tra email
         if (!/^\S+@\S+\.\S+$/.test(email)) {
-            errorDiv.textContent = "Email không hợp lệ";
-            errorDiv.classList.remove("hidden");
-            return;
+            try {
+                throw new Error("Email không hợp lệ");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            }
         }
+
         if (password.length < 8) {
-            errorDiv.textContent = "Mật khẩu phải có ít nhất 8 ký tự";
-            errorDiv.classList.remove("hidden");
-            return;
+            try {
+                throw new Error("Mật khẩu phải có ít nhất 8 ký tự");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            }
         }
         // Kiểm tra mật khẩu trùng khớp
         if (password !== confirmPassword) {
-            errorDiv.textContent = "Mật khẩu không khớp";
-            errorDiv.classList.remove("hidden");
-            return;
-        }
+            try {
+                throw new Error("Mật khẩu không khớp");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            } }
         // Kiểm tra số điện thoại
         if (!/^\d{10,11}$/.test(phone)) {
-            errorDiv.textContent = "Số điện thoại chỉ được chứa số và phải có độ dài từ 10 đến 11 ký tự";
-            errorDiv.classList.remove("hidden");
-            return;
-        }
+            try {
+                throw new Error("Số điện thoại chỉ được chứa số và phải có độ dài từ 10 đến 11 ký tự");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            } }
         // Kiểm tra email trùng
         let users = JSON.parse(localStorage.getItem('users')) || [];
         if (users.some(user => user.email === email)) {
-            errorDiv.textContent = "Email đã tồn tại";
-            errorDiv.classList.remove("hidden");
-            return;
-        }
+            try {
+                throw new Error("Email đã tồn tại");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            }}
         // Kiểm tra số điện thoại trùng
         if (users.some(user => user.phone === phone)) {
-            errorDiv.textContent = "Số điện thoại đã tồn tại";
-            errorDiv.classList.remove("hidden");
-            return;
+            try {
+                throw new Error("Số điện thoại đã tồn tại");
+            } catch (err) {
+                errorDiv.textContent = err.message;
+                errorDiv.classList.remove("hidden");
+                return;
+            }
         }
-
         const newUser = {
             id: Date.now().toString(),
             fullName,
@@ -101,13 +123,12 @@ if (registerForm) {
         window.location.href = 'login.html';
     });
 
-   
     const fullNameInput = document.getElementById('fullName');
     if (fullNameInput) {
         fullNameInput.addEventListener('input', function () {
             const errorDiv = document.getElementById('register-error');
             errorDiv.textContent = "";
-            errorDiv.classList.add("hidden");
+            errorDiv.classList.remove("hidden");
         });
     }
 }

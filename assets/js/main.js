@@ -27,27 +27,21 @@ function updateNavigation() {
     const loginLink = document.getElementById('login-link');
     const logoutLink = document.getElementById('logout-link');
     const adminLink = document.getElementById('admin-link');
-    const scheduleLink = document.getElementById('schedule-link'); // Thêm liên kết "Đặt lịch"
+    const scheduleLink = document.getElementById('schedule-link'); 
     const classBookingButtons = document.querySelectorAll('.class-booking-btn');
     const startButton = document.getElementById('start-button');
-    
-
     
     const mobileLoginLink = document.getElementById('mobile-login-link');
     const mobileLogoutLink = document.getElementById('mobile-logout-link');
     const mobileAdminLink = document.getElementById('mobile-admin-link');
-    const mobileScheduleLink = document.getElementById('mobile-schedule-link'); // Thêm liên kết "Đặt lịch" di động
-
-   
+    const mobileScheduleLink = document.getElementById('mobile-schedule-link');
     if (currentUser) {
         if (loginLink) loginLink.classList.add('hidden');
         if (logoutLink) logoutLink.classList.remove('hidden');
         if (mobileLoginLink) mobileLoginLink.classList.add('hidden');
         if (mobileLogoutLink) mobileLogoutLink.classList.remove('hidden');
-        if (scheduleLink) scheduleLink.classList.remove('hidden'); // Đảm bảo "Đặt lịch" hiển thị
-        if (mobileScheduleLink) mobileScheduleLink.classList.remove('hidden'); // Đảm bảo "Đặt lịch" di động hiển thị
-
-     
+        if (scheduleLink) scheduleLink.classList.remove('hidden');
+        if (mobileScheduleLink) mobileScheduleLink.classList.remove('hidden'); 
         if (currentUser.role === 'admin') {
             if (adminLink) adminLink.classList.remove('hidden');
             if (mobileAdminLink) mobileAdminLink.classList.remove('hidden');
