@@ -7,9 +7,9 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-   
 }
-.header{
+
+.header {
     font-size: 1.75rem;  
     font-weight: 700; 
 }
@@ -26,33 +26,79 @@
     z-index: 10;
     max-width: 28rem;
     width: 100%;
-    opacity:0.8;
+    opacity: 0.8;
 }
 
 .headerLogin {
-    background-color: rgb(128, 128, 128,0.8);
+    background-color: rgb(128, 128, 128, 0.8);
     color: white;
     padding: 1rem 1.5rem;
 }
-.comfirmBtn{
+.comfirmBtn {
     background-color: rgb(128, 128, 128);
     color: white;
     padding: 10px;
-    border:1px solid grey;
-    border-radius: 10px;}
-    .comfirmBtn:hover{
-        transition: 0.5s;
-        background-color: white;
-        color: grey;
-    }
-    .loginToHome{
-        font-size: 20px;
-    margin-top:2px;
-    padding:10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.comfirmBtn:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: grey;
+}
+.loginToHome {
+    font-size: 20px;
+    margin-top: 2px;
+    padding: 10px;
     border-radius: 5px;
+}
+.loginToHome:hover {
+    transition: 0.5s;
+    color: grey;
+    background-color: white;
+}
+
+/* Tablet (max-width: 1050px) */
+@media (max-width: 1050px) {
+    .login-form-container {
+        max-width: 24rem; 
     }
-    .loginToHome:hover{
-        transition: 0.5s;
-        color:grey;
-        background-color: white;
+    .header {
+        font-size: 1.5rem; 
     }
+    .loginToHome {
+        font-size: 16px; 
+        padding: 8px;
+    }
+    .comfirmBtn {
+        padding: 8px; 
+        font-size: 14px;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .login-form-container {
+        max-width: 90%; 
+    }
+    .header {
+        font-size: 1.25rem; 
+    }
+    .loginToHome {
+        font-size: 14px; 
+        padding: 6px;
+    }
+    .comfirmBtn {
+        padding: 6px;
+    }
+    .headerLogin {
+        padding: 0.75rem 1rem;
+    }
+    form {
+        padding: 1rem; 
+    }
+    input {
+        padding: 0.5rem;
+        font-size: 14px;
+    }
+}

@@ -1,4 +1,4 @@
-/* CSS cho trang đăng nhập */
+/* CSS cho trang đăng ký */
 .register-container {
     position: relative;
     width: 100%;
@@ -7,7 +7,6 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-   
 }
 
 .video-background {
@@ -23,23 +22,24 @@
     z-index: 10;
     max-width: 28rem;
     width: 100%;
-    opacity:0.5;
+    opacity: 0.8;
 }
 
 .headerRegister {
-    background-color: rgb(128, 128, 128,0.9);
+    background-color: rgb(128, 128, 128, 0.9);
     color: white;
-    padding: 1rem 1.5rem;
+    padding: 0px 0px;
 }
-.confirmBtn{
-    background-color: rgb(128, 128, 128,0.9);
+.confirmBtn {
+    background-color: rgb(128, 128, 128, 0.9);
     color: white;
     padding: 10px;
-    border:1px solid grey;
-    border-radius: 10px;}
-.confirmBtn:hover{
-    background-color:white;
-    color:grey;
+    border: 1px solid grey;
+    border-radius: 10px;
+}
+.confirmBtn:hover {
+    background-color: white;
+    color: grey;
 }
 #notification {
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -51,22 +51,78 @@
     opacity: 1;
     transform: translateY(0);
 }
-.homeBtn{
+.homeBtn {
     background-color: rgba(128, 128, 128, 0);
-    color:white;
-  font-size: 30px;
-  font-weight: 700;
-    padding:10px;
-    border-radius: 5px;
-   
-}
-.homeBtn:hover{
-    transition:0.5s;
-    background-color: white;
-    color:grey;
-}
-.headerText{
-    color:white;
+    color: white;
     font-size: 30px;
-    font-weight:700;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 5px;
+}
+.homeBtn:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: grey;
+}
+.headerText {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* Tablet (max-width: 1050px) */
+@media (max-width: 1050px) {
+    .register-form-container {
+        max-width: 24rem; 
+        
+    }
+    .headerText {
+        font-size: 24px; 
+        
+    }
+    .homeBtn {
+        font-size: 24px; 
+        
+        padding: 8px;
+    }
+    .confirmBtn {
+        padding: 8px; 
+        
+        font-size: 14px;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .register-form-container {
+        max-width: 90%; 
+        
+    }
+    .headerText {
+        font-size: 20px;
+        
+    }
+    .homeBtn {
+        font-size: 20px; 
+        
+        padding: 6px;
+    }
+    .confirmBtn {
+        padding: 6px; 
+        
+        font-size: 12px;
+    }
+    .headerRegister {
+        padding: 0.75rem 1rem; 
+        
+    }
+    form {
+        padding: 1rem; 
+        
+    }
+    input, textarea {
+        padding: 0.5rem; 
+        
+        font-size: 14px;
+    }
 }

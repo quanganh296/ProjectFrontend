@@ -10,11 +10,10 @@
     align-items: center;
     z-index: 1000;
 }
-.modal-delete{
-   
+.modal-delete {
     background-color: white;
     border-radius: 5px;
-    padding:60px;
+    padding: 60px;
 }
 .modal-footer {
     display: flex;
@@ -33,31 +32,30 @@
     margin-right: 10px;
 }
 
-.modal-header{
+.modal-header {
     margin-bottom: 20px;
 }
-.cancelBtn{
+.cancelBtn {
     background-color: #6b7280;
     color: white;             
-    padding:20px 50px;   
-    border:1px solid grey;
+    padding: 20px 50px;   
+    border: 1px solid grey;
     border-radius: 0.25rem;
 }
-.corfirmDeleteBtn{
+.corfirmDeleteBtn {
     background-color: red; 
     color: white;             
-   padding:20px 50px;
-   border:1px solid red;
+    padding: 20px 50px;
+    border: 1px solid red;
     border-radius: 0.25rem;
 }
-.cancelBtn:hover{
-    background-color:white;
-    color:grey;
-    
+.cancelBtn:hover {
+    background-color: white;
+    color: grey;
 }
-.corfirmDeleteBtn:hover{
-    background-color:white;
-    color:red;
+.corfirmDeleteBtn:hover {
+    background-color: white;
+    color: red;
 }
 .modal-content {
     background-color: white;
@@ -67,93 +65,90 @@
     max-width: 90%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.newCalender{
-    color:white;
+.newCalender {
+    color: white;
     background-color: grey;
-    padding:10px;
+    padding: 10px;
     border-radius: 5px;
-    border:1px solid grey;
+    border: 1px solid grey;
 }
-.headerText{
+.headerText {
     font-size: 30px;
     font-weight: 700;
-    color:white;
+    color: white;
 }
-.text{
-    border:1px solid rgba(128, 128, 128, 0);
-    color:white;
+.text {
+    border: 1px solid rgba(128, 128, 128, 0);
+    color: white;
     font-size: 20px;
-    margin-top:2px;
-    padding:10px;
-   
+    margin-top: 2px;
+    padding: 10px;
     border-radius: 5px;
 }
-.text:hover{
-    transition: 0.5s ;
-    color:grey;
+.text:hover {
+    transition: 0.5s;
+    color: grey;
     background-color: white;
 }
-.text2{
+.text2 {
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
     color: grey;
-    font-size:30px;
+    font-size: 30px;
     font-weight: bolder;
 }
-.text3{
-    color:grey;
+.text3 {
+    color: grey;
     font-size: 1.875rem; 
     font-weight: 700;    
     margin-bottom: 2rem;     
     text-align: center; 
 }
-.newCalender:hover{
-   
-    background-color:white;
-    color:grey;
-    transition:  1s ease;
-   
+.newCalender:hover {
+    background-color: white;
+    color: grey;
+    transition: 1s ease;
 }
 .hidden {
     display: none;
 }
-.editBtn1, .editBtn2{
-    margin:0 auto;
+.editBtn1, .editBtn2 {
+    margin: 0 auto;
     justify-content: space-between;
     align-items: center;
-    padding:5px 10px;
+    padding: 5px 10px;
     border-radius: 5px;
 }
-.editBtn1{
-    background-color:blue;
-    color:white;
-    border:1px solid blue;
+.editBtn1 {
+    background-color: blue;
+    color: white;
+    border: 1px solid blue;
 }
-.editBtn2{
-    background-color:#6b7280;
-    color:white;
-    border:1px solid grey;
+.editBtn2 {
+    background-color: #6b7280;
+    color: white;
+    border: 1px solid grey;
 }
-.editBtn1:hover{
-    background-color:white;
-color:blue;
-transition: 0.5s;   
+.editBtn1:hover {
+    background-color: white;
+    color: blue;
+    transition: 0.5s;   
 }
-.editBtn2:hover{
-    background-color:white;
-color:grey;
-transition: 0.5s; 
+.editBtn2:hover {
+    background-color: white;
+    color: grey;
+    transition: 0.5s; 
 }
-.header{
+.header {
     background-color: grey;
     display: flex;
     justify-content: space-between;
-    gap:10px;
-    padding:10px;
+    gap: 10px;
+    padding: 10px;
 }
-.bookingContainer{
+.bookingContainer {
     max-width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -164,6 +159,110 @@ transition: 0.5s;
     width: 100%;
     box-sizing: border-box;
 }
-body{
+body {
     background-image: url("../pic/silver.jpg");
+}
+
+/* Tablet (max-width: 1050px) */
+@media (max-width: 1050px) {
+    .headerText {
+        font-size: 24px;
+        
+    }
+    .text {
+        font-size: 16px; 
+        
+        padding: 8px;
+    }
+    .text2 {
+        font-size: 24px;
+        
+    }
+    .text3 {
+        font-size: 1.5rem; 
+        
+    }
+    .newCalender {
+        padding: 8px; 
+        
+        font-size: 14px;
+    }
+    .modal-content {
+        width: 350px; 
+        
+        padding: 15px;
+    }
+    .cancelBtn, .corfirmDeleteBtn {
+        padding: 15px 40px; 
+        
+    }
+    table {
+        font-size: 14px; 
+        
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .headerText {
+        font-size: 20px; 
+        
+    }
+    .text {
+        font-size: 14px; 
+        
+        padding: 6px;
+    }
+    .text2 {
+        font-size: 20px; 
+        
+    }
+    .text3 {
+        font-size: 1.25rem; 
+        
+    }
+    .newCalender {
+        padding: 6px; 
+        
+        font-size: 12px;
+    }
+    .modal-content {
+        width: 90%; 
+        
+        padding: 10px;
+    }
+    .cancelBtn, .corfirmDeleteBtn {
+        padding: 10px 30px;
+        
+        font-size: 12px;
+    }
+    table {
+        font-size: 12px;
+        
+    }
+    thead {
+        display: none; 
+        
+    }
+    tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+    }
+    tbody td {
+        display: block;
+        text-align: left;
+        padding: 0.5rem;
+    }
+    tbody td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 40%;
+    }
+    .editBtn1, .editBtn2 {
+        padding: 4px 8px;
+        
+        font-size: 12px;
+    }
 }
