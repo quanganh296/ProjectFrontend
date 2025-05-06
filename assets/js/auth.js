@@ -17,37 +17,39 @@
         localStorage.setItem('users', JSON.stringify(users));
     }
 })();
+
 const logoutLinks = document.querySelectorAll('#logout-link, #mobile-logout-link');
 logoutLinks.forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
         localStorage.removeItem('currentUser');
-     
         window.location.href = '/code/ProjectFrontend/pages/auth/login.html';
     });
 });
+
 const registerForm = document.getElementById('register-form');
 
 if (registerForm) {
     registerForm.addEventListener('submit', function (e) {
         e.preventDefault();
-    
+
         const fullName = document.getElementById('fullName').value.trim();
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const phone = document.getElementById('phone').value.trim();
         const errorDiv = document.getElementById('register-error');
-    
-        // Ẩn lỗi cũ
+
         errorDiv.textContent = "";
         errorDiv.classList.add("hidden");
-       // Kiểm tra tên chỉ chứa chữ cái
-// if (!/^[a-zA-Z\s]+$/.test(fullName)) {
-//     errorDiv.textContent = "Tên chỉ được chứa chữ cái và khoảng trắng";
-//     errorDiv.classList.remove("hidden");
-//     return;
-// }
+
+        // Kiểm tra tên chỉ chứa chữ cái, khoảng trắng và ký tự có dấu tiếng Việt
+        if (!/^[a-zA-ZÀ-ỹ\s]+$/.test(fullName)) {
+            errorDiv.textContent = "Tên chỉ được chứa chữ cái, khoảng trắng và ký tự có dấu tiếng Việt";
+            errorDiv.classList.remove("hidden");
+            return;
+        }
+
         // Kiểm tra email
         if (!/^\S+@\S+\.\S+$/.test(email)) {
             errorDiv.textContent = "Email không hợp lệ";
@@ -84,8 +86,7 @@ if (registerForm) {
             errorDiv.classList.remove("hidden");
             return;
         }
-    
-        // Tạo người dùng mới
+
         const newUser = {
             id: Date.now().toString(),
             fullName,
@@ -94,11 +95,19 @@ if (registerForm) {
             phone,
             role: 'user',
         };
-    
+
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
-    
-        // Chuyển hướng đến trang đăng nhập
         window.location.href = 'login.html';
     });
+
+   
+    const fullNameInput = document.getElementById('fullName');
+    if (fullNameInput) {
+        fullNameInput.addEventListener('input', function () {
+            const errorDiv = document.getElementById('register-error');
+            errorDiv.textContent = "";
+            errorDiv.classList.add("hidden");
+        });
+    }
 }

@@ -1,8 +1,8 @@
-const DB = {}; // Khởi tạo đối tượng DB
+const DB = {}; 
 
 DB.init = function () {
     console.log('DB initialized');
-    // Thêm các logic khởi tạo khác nếu cần
+  
 };
 
 DB.services = {
@@ -37,17 +37,29 @@ DB.bookings = {
     },
     add(booking) {
         const bookings = this.getAll();
-        booking.id = Date.now().toString(); // Tạo ID đơn giản
+        if (isDuplicateBooking(booking, bookings)) {
+            console.warn('Duplicate booking detected, not adding:', booking);
+            showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.', 'error');
+            return null;
+        }
+        booking.id = Date.now().toString();
         bookings.push(booking);
         localStorage.setItem('bookings', JSON.stringify(bookings));
+        console.log('Booking added successfully:', booking);
         return booking;
     },
     update(updatedBooking) {
         let bookings = this.getAll();
+        if (isDuplicateBooking(updatedBooking, bookings)) {
+            console.warn('Duplicate booking detected, not updating:', updatedBooking);
+            showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.', 'error');
+            return false;
+        }
         const index = bookings.findIndex(booking => booking.id === updatedBooking.id);
         if (index !== -1) {
             bookings[index] = updatedBooking;
             localStorage.setItem('bookings', JSON.stringify(bookings));
+            console.log('Booking updated successfully:', updatedBooking);
             return true;
         }
         return false;
@@ -58,58 +70,17 @@ DB.bookings = {
         localStorage.setItem('bookings', JSON.stringify(bookings));
     }
 };
+
 function loadServices() {
     const servicesTableBody = document.getElementById('services-table-body');
     if (!servicesTableBody) {
         console.error('services-table-body not found');
         return;
     }
-    // Populate the services table
+ 
     servicesTableBody.innerHTML = '<tr><td>Example Service</td></tr>'; // Example content
 }
 
-function loadBookings() {
-    const bookingsTableBody = document.getElementById('bookings-table-body');
-    if (!bookingsTableBody) {
-        console.error('bookings-table-body not found');
-        return;
-    }
-    // Populate the bookings table
-    bookingsTableBody.innerHTML = '<tr><td>Example Booking</td></tr>'; // Example content
-}
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM fully loaded');
-
-    // Log the state of the DOM elements
-    console.log('services-table-body:', document.getElementById('services-table-body'));
-    console.log('bookings-table-body:', document.getElementById('bookings-table-body'));
-
-    const startButton = document.getElementById('start-button');
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-
-    if (startButton) {
-        if (currentUser) {
-            // Nếu đã đăng nhập, dẫn đến trang đặt lịch
-            startButton.setAttribute('href', 'pages/booking/schedule.html');
-        } else {
-            // Nếu chưa đăng nhập, dẫn đến trang đăng ký
-            startButton.setAttribute('href', 'pages/auth/register.html');
-        }
-    }
-    initializeData();
-    setupEventListeners();
-
-    // Other initialization logic...
-    setupServiceManagement();
-    setupBookingManagement();
-    setupNavigation();
-    loadServices();
-    if (typeof DB.bookings.getAll === 'function') {
-        loadBookings();
-    } else {
-        console.error('DB.bookings.getAll is not defined');
-    }
-});
 function initializeData() {
     if (!localStorage.getItem('bookings')) {
         const sampleBookings = [];
@@ -125,54 +96,67 @@ function initializeData() {
         localStorage.setItem('services', JSON.stringify(sampleServices));
     }
 }
-initializeData();
 
 function setupNavigation() {
     console.log('Navigation setup is complete from db.js');
 }
 
-// Khởi tạo dữ liệu khi trang được tải
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded');
+    console.log('services-table-body:', document.getElementById('services-table-body'));
+    console.log('bookings-table-body:', document.getElementById('bookings-table-body'));
+
+    const startButton = document.getElementById('start-button');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    if (startButton) {
+        if (currentUser) {
+            startButton.setAttribute('href', 'pages/booking/schedule.html');
+        } else {
+            startButton.setAttribute('href', 'pages/auth/register.html');
+        }
+    }
     initializeData();
+    setupEventListeners();
+    setupServiceManagement();
+    setupBookingManagement();
     setupNavigation();
+    loadServices();
+    if (typeof DB.bookings.getAll === 'function') {
+        loadBookings();
+    } else {
+        console.error('DB.bookings.getAll is not defined');
+    }
 });
+
 function displayErrorMessage(formId, message) {
     const form = document.getElementById(formId);
     if (!form) {
         console.error(`Form with ID ${formId} not found`);
         return;
     }
-
-    // Remove any existing error message
     const existingError = form.querySelector('.error-message');
     if (existingError) {
         existingError.remove();
     }
-
-    // Create and append the new error message
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message text-red-500 text-sm mt-2';
     errorDiv.textContent = message;
     form.appendChild(errorDiv);
 }
 
-// Function to clear the error message
 function clearErrorMessage(formId) {
     const form = document.getElementById(formId);
     if (!form) return;
-
     const existingError = form.querySelector('.error-message');
     if (existingError) {
         existingError.remove();
     }
 }
-// Add this at the end of db.js
 
-// Override setupEventListeners to avoid errors when elements are not present
 function setupEventListeners() {
     console.log('Event listeners are set up (final version)');
 
-    // Check for confirm-delete-btn (Service deletion)
     const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener('click', function() {
@@ -188,7 +172,6 @@ function setupEventListeners() {
         console.log('confirm-delete-btn listener attached');
     }
 
-    // Check for confirm-delete-booking-btn (Booking deletion)
     const confirmDeleteBookingBtn = document.getElementById('confirm-delete-booking-btn');
     if (confirmDeleteBookingBtn) {
         confirmDeleteBookingBtn.addEventListener('click', function() {
@@ -205,7 +188,6 @@ function setupEventListeners() {
         console.log('confirm-delete-booking-btn listener attached');
     }
 
-    // Check for add-service-btn
     const addServiceBtn = document.getElementById('add-service-btn');
     if (addServiceBtn) {
         addServiceBtn.addEventListener('click', function () {
@@ -221,7 +203,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for cancel-add-btn
     const cancelAddBtn = document.getElementById('cancel-add-btn');
     if (cancelAddBtn) {
         cancelAddBtn.addEventListener('click', function () {
@@ -232,7 +213,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for save-add-btn
     const saveAddBtn = document.getElementById('save-add-btn');
     if (saveAddBtn) {
         saveAddBtn.addEventListener('click', function() {
@@ -251,11 +231,10 @@ function setupEventListeners() {
                 document.getElementById('service-desc-input').value = '';
                 document.getElementById('service-price-input').value = '';
                 document.getElementById('service-img-input').value = '';
-            } 
+            }
         });
     }
 
-    // Check for cancel-edit-btn
     const cancelEditBtn = document.getElementById('cancel-edit-btn');
     if (cancelEditBtn) {
         cancelEditBtn.addEventListener('click', function() {
@@ -263,7 +242,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for save-edit-btn
     const saveEditBtn = document.getElementById('save-edit-btn');
     if (saveEditBtn) {
         saveEditBtn.addEventListener('click', function() {
@@ -278,11 +256,10 @@ function setupEventListeners() {
                 DB.services.update(updatedService);
                 hideModal('edit-service-modal');
                 loadServices();
-            } 
+            }
         });
     }
 
-    // Check for cancel-delete-btn
     const cancelDeleteBtn = document.getElementById('cancel-delete-btn');
     if (cancelDeleteBtn) {
         cancelDeleteBtn.addEventListener('click', function() {
@@ -290,7 +267,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for save-edit-booking-btn
     const saveEditBookingBtn = document.getElementById('save-edit-booking-btn');
     if (saveEditBookingBtn) {
         saveEditBookingBtn.addEventListener('click', function() {
@@ -322,7 +298,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for cancel-delete-booking-btn
     const cancelDeleteBookingBtn = document.getElementById('cancel-delete-booking-btn');
     if (cancelDeleteBookingBtn) {
         cancelDeleteBookingBtn.addEventListener('click', function() {
@@ -331,7 +306,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for cancel-edit-booking-btn
     const cancelEditBookingBtn = document.getElementById('cancel-edit-booking-btn');
     if (cancelEditBookingBtn) {
         cancelEditBookingBtn.addEventListener('click', function() {
@@ -340,7 +314,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for service-nav
     const serviceNav = document.getElementById('service-nav');
     const bookingNav = document.getElementById('booking-nav');
     
@@ -364,7 +337,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for apply-filter
     const applyFilterBtn = document.getElementById('apply-filter');
     if (applyFilterBtn) {
         applyFilterBtn.addEventListener('click', function() {
@@ -373,7 +345,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for apply-service-filter
     const applyServiceFilterBtn = document.getElementById('apply-service-filter');
     if (applyServiceFilterBtn) {
         applyServiceFilterBtn.addEventListener('click', function() {
@@ -382,7 +353,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for add-booking-form (assumed in schedule.html)
     const addBookingForm = document.getElementById('add-booking-form');
     const saveAddBookingBtn = document.getElementById('save-add-booking-btn');
     if (addBookingForm && saveAddBookingBtn) {
@@ -416,7 +386,6 @@ function setupEventListeners() {
         });
     }
 
-    // Check for cancel-add-booking-btn
     const cancelAddBookingBtn = document.getElementById('cancel-add-booking-btn');
     if (cancelAddBookingBtn) {
         cancelAddBookingBtn.addEventListener('click', function() {
@@ -425,6 +394,7 @@ function setupEventListeners() {
         });
     }
 }
+
 function setupServiceManagement() {
     console.log('Service management setup is complete');
 }
@@ -433,11 +403,6 @@ function setupBookingManagement() {
     console.log('Booking management setup is complete');
 }
 
-function setupNavigation() {
-    console.log('Navigation setup is complete');
-}
-
-// Modal utility functions
 function showModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -453,12 +418,10 @@ function hideModal(modalId, immediate = false) {
     const modal = document.getElementById(modalId);
     if (modal) {
         if (immediate) {
-            // Ẩn ngay lập tức mà không cần hiệu ứng
             modal.classList.add('hidden');
             modal.classList.remove('fade-out');
             console.log(`Modal ${modalId} hidden immediately`);
         } else {
-            // Sử dụng hiệu ứng fade-out như trước
             modal.classList.add('fade-out');
             setTimeout(() => {
                 modal.classList.add('hidden');
@@ -469,6 +432,7 @@ function hideModal(modalId, immediate = false) {
         console.error(`Modal ${modalId} not found`);
     }
 }
+
 function showSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -483,14 +447,12 @@ function hideSection(sectionId) {
     }
 }
 
-// Service Functions
 function loadServices(applyFilters = false) {
     console.log('loadServices called, applyFilters:', applyFilters);
     
     let services = DB.services.getAll();
     let updated = false;
 
-    // Cập nhật đường dẫn hình ảnh nếu cần
     services.forEach(service => {
         if (service.name === 'Gym') {
             service.image = '../../assets/pic/Gymclass.jpg';
@@ -509,7 +471,6 @@ function loadServices(applyFilters = false) {
         console.log('Service images updated successfully');
     }
 
-    // Áp dụng bộ lọc nếu có
     if (applyFilters) {
         const nameFilter = document.getElementById('service-name-filter')?.value.trim().toLowerCase();
         const priceMinFilter = parseFloat(document.getElementById('service-price-min-filter')?.value) || 0;
@@ -561,11 +522,11 @@ function loadServices(applyFilters = false) {
         console.error('services-table-body not found');
     }
 }
+
 function showDeleteServiceModal(serviceId) {
     console.log('Opening delete service modal for ID:', serviceId);
     const confirmDeleteBtn = document.getElementById('confirm-delete-btn');
     if (confirmDeleteBtn) {
-        // Chỉ cập nhật data-service-id, không cần gắn lại sự kiện
         confirmDeleteBtn.setAttribute('data-service-id', serviceId);
     } else {
         console.error('confirm-delete-btn not found in modal');
@@ -573,25 +534,18 @@ function showDeleteServiceModal(serviceId) {
     showModal('delete-confirm-modal');
 }
 
-
 function deleteService(serviceId) {
     console.log('deleteService called with ID:', serviceId);
-    
-    // Xóa dịch vụ khỏi localStorage
     DB.services.delete(serviceId);
-    
-    // Cập nhật lại bảng ngay lập tức
     console.log('Calling loadServices to refresh table');
     loadServices();
-    
-    // Ẩn modal ngay lập tức
     console.log('Hiding delete-confirm-modal');
     hideModal('delete-confirm-modal', true);
 }
-   
+
 function isDuplicateBooking(newBooking, existingBookings) {
     return existingBookings.some(booking => 
-        booking.id !== newBooking.id && // Exclude the booking being updated
+        booking.id !== newBooking.id &&
         booking.service === newBooking.service &&
         booking.date === newBooking.date &&
         booking.time === newBooking.time &&
@@ -599,64 +553,26 @@ function isDuplicateBooking(newBooking, existingBookings) {
     );
 }
 
-// Override DB.bookings.add to prevent duplicates
-DB.bookings.add = function(booking) {
-    const bookings = this.getAll();
-    
-    // Check for duplicates before adding
-    if (isDuplicateBooking(booking, bookings)) {
-        console.warn('Duplicate booking detected, not adding:', booking);
-         showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
-        return null; // Do not add the duplicate booking
-    }
+let currentPage = 0;
+const bookingsPerPage = 4;
 
-    booking.id = Date.now().toString(); // Tạo ID đơn giản
-    bookings.push(booking);
-    localStorage.setItem('bookings', JSON.stringify(bookings));
-    console.log('Booking added successfully:', booking);
-    return booking;
-};
-
-
-DB.bookings.update = function(updatedBooking) {
-    let bookings = this.getAll();
-    
-  
-    if (isDuplicateBooking(updatedBooking, bookings)) {
-        console.warn('Duplicate booking detected, not updating:', updatedBooking);
-         showNotification('Lịch tập này đã tồn tại! Vui lòng chọn lịch khác.');
-        return false; 
-    }
-
-    const index = bookings.findIndex(booking => booking.id === updatedBooking.id);
-    if (index !== -1) {
-        bookings[index] = updatedBooking;
-        localStorage.setItem('bookings', JSON.stringify(bookings));
-        console.log('Booking updated successfully:', updatedBooking);
-        return true;
-    }
-    return false;
-};
-function loadBookings(applyFilters = false) {
+function loadBookings(applyFilters = false, page = currentPage) {
     let bookings = DB.bookings.getAll();
     
-    // Deduplicate bookings (keep the latest entry based on ID)
     const seen = new Set();
     bookings = bookings.filter(booking => {
-        if (!booking.id) return false; // Skip bookings without an ID
+        if (!booking.id) return false;
         const key = `${booking.service}|${booking.date}|${booking.time}|${booking.email}`;
         if (seen.has(key)) {
             console.log('Duplicate booking removed:', booking);
-            return false; // Skip duplicate
+            return false;
         }
         seen.add(key);
         return true;
     });
     
-    // Save deduplicated bookings back to localStorage
     localStorage.setItem('bookings', JSON.stringify(bookings));
     
-    // Lấy danh sách users từ localStorage để lấy fullName
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     
     if (applyFilters) {
@@ -691,13 +607,20 @@ function loadBookings(applyFilters = false) {
         }
     }
     
+    const totalBookings = bookings.length;
+    const totalPages = Math.ceil(totalBookings / bookingsPerPage);
+    currentPage = Math.max(0, Math.min(page, totalPages - 1));
+    
+    const startIndex = currentPage * bookingsPerPage;
+    const paginatedBookings = bookings.slice(startIndex, startIndex + bookingsPerPage);
+    
     const tableBody = document.getElementById('bookings-table-body');
     if (tableBody) {
         tableBody.innerHTML = '';
-        if (bookings.length === 0) {
+        if (paginatedBookings.length === 0) {
             tableBody.innerHTML = '<tr><td colspan="7" class="py-2 px-4 text-center">Không tìm thấy lịch tập nào.</td></tr>';
         } else {
-            bookings.forEach(booking => {
+            paginatedBookings.forEach(booking => {
                 const user = users.find(u => u.email === booking.email) || { fullName: 'N/A', email: booking.email || 'N/A' };
                 const row = document.createElement('tr');
                 row.className = 'border-t';
@@ -716,12 +639,36 @@ function loadBookings(applyFilters = false) {
                 tableBody.appendChild(row);
             });
         }
-        console.log('Bookings table reloaded:', bookings);
+        console.log('Bookings table reloaded:', paginatedBookings);
     } else {
         console.error('bookings-table-body not found');
     }
+    
+    const pageNumbersContainer = document.getElementById('page-numbers');
+    if (pageNumbersContainer) {
+        pageNumbersContainer.innerHTML = '';
+        if (totalPages <= 0) {
+            const button = document.createElement('button');
+            button.className = 'bg-gray-500 text-white px-3 py-1 rounded disabled:bg-gray-300';
+            button.textContent = '0';
+            button.disabled = true;
+            pageNumbersContainer.appendChild(button);
+        } else {
+            for (let i = 0; i < totalPages; i++) {
+                const button = document.createElement('button');
+                button.className = i === currentPage 
+                    ? 'bg-blue-500 text-white px-3 py-1 rounded' 
+                    : 'bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600';
+                button.textContent = i;
+                button.onclick = () => loadBookings(applyFilters, i);
+                pageNumbersContainer.appendChild(button);
+            }
+        }
+    }
+    
     updateBookingStats(bookings);
 }
+
 function updateBookingStats(bookings) {
     const gymCount = bookings.filter(b => b && b.service && b.service.toLowerCase() === 'gym').length;
     const yogaCount = bookings.filter(b => b && b.service && b.service.toLowerCase() === 'yoga').length;
@@ -736,17 +683,16 @@ function updateBookingStats(bookings) {
     if (zumbaCountElement) zumbaCountElement.textContent = zumbaCount;
     
     const maxHeight = 200;
-    const maxCount = Math.max(gymCount, yogaCount, zumbaCount);
+    const maxCount = Math.max(gymCount, yogaCount, zumbaCount, 1);
     
     const gymBar = document.getElementById('gym-bar');
     const yogaBar = document.getElementById('yoga-bar');
     const zumbaBar = document.getElementById('zumba-bar');
     
     if (gymBar && yogaBar && zumbaBar) {
-        gymBar.style.height = maxCount > 0 ? `${(gymCount / maxCount) * maxHeight}px` : '10px';
-        yogaBar.style.height = maxCount > 0 ? `${(yogaCount / maxCount) * maxHeight}px` : '10px';
-// Function to show the edit booking modal
-// Removed unused function 'showEditBookingModal'
+        gymBar.style.height = `${(gymCount / maxCount) * maxHeight}px`;
+        yogaBar.style.height = `${(yogaCount / maxCount) * maxHeight}px`;
+        zumbaBar.style.height = `${(zumbaCount / maxCount) * maxHeight}px`;
     }
 }
 
@@ -766,8 +712,7 @@ function showEditBookingModal(bookingId) {
         document.getElementById('edit-booking-status').value = booking.status;
         
         showModal('edit-booking-modal');
-// Function to show the delete booking modal
-// Removed unused function 'showDeleteBookingModal'
+    } else {
         console.error('Booking not found:', bookingId);
     }
 }
@@ -804,26 +749,16 @@ DB.bookings.getAll = function() {
 DB.bookings.delete = function(bookingId) {
     let bookings = this.getAll();
     console.log('Deleting booking ID:', bookingId, 'Current bookings:', bookings);
-    
-    // More robust comparison that doesn't rely on toString()
     bookings = bookings.filter(booking => {
-        // Skip comparing if either ID is missing
         if (!booking || !booking.id) return true;
-        
-        // Convert both to strings safely
         const bookingIdStr = String(booking.id);
         const targetIdStr = String(bookingId);
-        
-        // Compare as strings
         return bookingIdStr !== targetIdStr;
     });
-// Function to update the add image preview
-// Removed unused function 'updateAddImagePreview'
     localStorage.setItem('bookings', JSON.stringify(bookings));
     console.log('Bookings after deletion:', bookings);
 };
 
-// Image Preview Functions
 function updateAddImagePreview() {
     const imageUrl = document.getElementById('service-img-input')?.value.trim();
     const imagePreview = document.getElementById('add-image-preview');
@@ -833,29 +768,9 @@ function updateAddImagePreview() {
         imagePreview.onerror = () => {
             imagePreview.src = '';
             imagePreview.style.display = 'none';
-       
+        };
     }
 }
-const preview = document.getElementById('edit-image-preview');
-    if (preview) {
-        if (service.image) {
-            preview.src = service.image;
-            preview.style.display = 'block';
-            preview.onerror = () => {
-                preview.src = '';
-                preview.style.display = 'none';
-              
-            };
-        } else {
-            preview.src = '';
-            preview.style.display = 'none';
-        }
-    }
-};
-// Function to update the edit image preview
-
-
-
 
 function showEditServiceModal(serviceId) {
     const service = DB.services.getAll().find(s => String(s.id) === String(serviceId));
@@ -863,166 +778,46 @@ function showEditServiceModal(serviceId) {
         console.error('Không tìm thấy dịch vụ với ID:', serviceId);
         return;
     }
-
-    // Điền dữ liệu vào các trường của modal
     document.getElementById('edit-service-id').value = service.id;
     document.getElementById('edit-service-name').value = service.name;
     document.getElementById('edit-service-desc').value = service.description;
     document.getElementById('edit-service-img').value = service.image || '';
-
-    // Hiển thị preview hình ảnh nếu có
-    
-
-    // Hiển thị modal
+    const preview = document.getElementById('edit-image-preview');
+    if (preview) {
+        if (service.image) {
+            preview.src = service.image;
+            preview.style.display = 'block';
+            preview.onerror = () => {
+                preview.src = '';
+                preview.style.display = 'none';
+            };
+        } else {
+            preview.src = '';
+            preview.style.display = 'none';
+        }
+    }
     showModal('edit-service-modal');
 }
 
-
-document.getElementById('save-edit-btn').addEventListener('click', function () {
-    const serviceId = document.getElementById('edit-service-id').value;
-    const updatedService = {
-        id: document.getElementById('edit-service-id').value,
-        name: document.getElementById('edit-service-name').value.trim(),
-        description: document.getElementById('edit-service-desc').value.trim(),
-        image: document.getElementById('edit-service-img').value.trim()
-    };
-    if (updatedService.name && updatedService.description) {
-        DB.services.update(updatedService);
-        hideModal('edit-service-modal');
-        loadServices();
-    } else {
-        showNotification('Vui lòng điền đầy đủ thông tin!', 'error');
-    }
-    // Cập nhật dịch vụ trong DB
-    DB.services.update(serviceId, updatedService);
-
-    // Ẩn modal
-    const modal = document.getElementById('edit-service-modal');
-    if (modal) {
-        modal.classList.add('hidden');
-    }
-
-    // Tải lại danh sách dịch vụ
-    loadServices();
-});
-DB.services.update = function(updatedService) {
-    let services = this.getAll();
-    const index = services.findIndex(service => service.id === updatedService.id);
-    if (index !== -1) {
-        services[index] = updatedService;
-        localStorage.setItem('services', JSON.stringify(services));
-    }
-};
-
-// Hàm xử lý cập nhật dịch vụ khi nhấn "Lưu" trong modal chỉnh sửa
-
-
-function debugServices() {
-    const services = DB.services.getAll();
-    console.log('Current services in localStorage:', services);
-}
-
-const logoutLink = document.getElementById('logout-link');
-if (logoutLink) {
-    logoutLink.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        localStorage.removeItem('currentUser'); 
-      
-        window.location.href = '../../pages/auth/login.html';
-    });
-}
-
-DB.services.delete = function(serviceId) {
-    let services = this.getAll();
-    console.log('Deleting service ID:', serviceId, 'Current services:', services);
-    
-    // So sánh ID bằng cách ép kiểu thành chuỗi
-    services = services.filter(service => String(service.id) !== String(serviceId));
-    
-    // Lưu lại danh sách dịch vụ đã cập nhật
-    localStorage.setItem('services', JSON.stringify(services));
-    console.log('Services after deletion:', services);
-};
-
-
-function updateBookingStats(bookings) {
-    const gymCount = bookings.filter(b => b && b.service && b.service.toLowerCase() === 'gym').length;
-    const yogaCount = bookings.filter(b => b && b.service && b.service.toLowerCase() === 'yoga').length;
-    const zumbaCount = bookings.filter(b => b && b.service && b.service.toLowerCase() === 'zumba').length;
-
-    const gymCountElement = document.getElementById('gym-count');
-    const yogaCountElement = document.getElementById('yoga-count');
-    const zumbaCountElement = document.getElementById('zumba-count');
-
-    if (gymCountElement) gymCountElement.textContent = gymCount;
-    if (yogaCountElement) yogaCountElement.textContent = yogaCount;
-    if (zumbaCountElement) zumbaCountElement.textContent = zumbaCount;
-
-    const maxHeight = 200;
-    const maxCount = Math.max(gymCount, yogaCount, zumbaCount, 1); // Ensure maxCount is at least 1 to avoid division by 0
-
-    const gymBar = document.getElementById('gym-bar');
-    const yogaBar = document.getElementById('yoga-bar');
-    const zumbaBar = document.getElementById('zumba-bar');
-
-    if (gymBar && yogaBar && zumbaBar) {
-        // Handle Gym bar
-        if (gymCount === 0) {
-            gymBar.style.display = 'none'; // Hide if no bookings
-        } else {
-            gymBar.style.display = 'block';
-            gymBar.style.height = `${(gymCount / maxCount) * maxHeight}px`;
-            gymBar.style.backgroundColor = '#757575';
-            gymBar.style.width = '100px';
-        }
-
-        // Handle Yoga bar
-        if (yogaCount === 0) {
-            yogaBar.style.display = 'none'; // Hide if no bookings
-        } else {
-            yogaBar.style.display = 'block';
-            yogaBar.style.height = `${(yogaCount / maxCount) * maxHeight}px`;
-            yogaBar.style.backgroundColor = '#616161';
-            yogaBar.style.width = '100px';
-        }
-
-        // Handle Zumba bar
-        if (zumbaCount === 0) {
-            zumbaBar.style.display = 'none'; // Hide if no bookings
-        } else {
-            zumbaBar.style.display = 'block';
-            zumbaBar.style.height = `${(zumbaCount / maxCount) * maxHeight}px`;
-            zumbaBar.style.backgroundColor = '#424242';
-            zumbaBar.style.width = '100px';
-            zumbaBar.style.minHeight = '10px'; // Ensure visibility if height is small
-        }
-    }
-
-    // Log for debugging (optional, can be removed later)
-    console.log('Booking Counts:', { gymCount, yogaCount, zumbaCount });
-    console.log('Bar Styles:', {
-        gymBarDisplay: gymBar ? gymBar.style.display : 'Not found',
-        gymBarHeight: gymBar ? gymBar.style.height : 'Not found',
-        yogaBarDisplay: yogaBar ? yogaBar.style.display : 'Not found',
-        yogaBarHeight: yogaBar ? yogaBar.style.height : 'Not found',
-        zumbaBarDisplay: zumbaBar ? zumbaBar.style.display : 'Not found',
-        zumbaBarHeight: zumbaBar ? zumbaBar.style.height : 'Not found'
-    });
-}
 function showNotification(message, type = 'info') {
     const notification = document.getElementById('notification');
-    if (!notification) return;
-
-    // Đặt nội dung thông báo
+    if (!notification) {
+        const tempNotification = document.createElement('div');
+        tempNotification.className = `fixed top-4 right-4 px-4 py-2 rounded shadow-lg text-white ${
+            type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
+        }`;
+        tempNotification.textContent = message;
+        document.body.appendChild(tempNotification);
+        setTimeout(() => {
+            tempNotification.remove();
+        }, 3000);
+        return;
+    }
     notification.textContent = message;
-
-    // Thêm lớp kiểu thông báo (info, success, error)
     notification.className = `fixed top-4 right-4 px-4 py-2 rounded shadow-lg show ${
         type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500'
     }`;
-
-    // Hiển thị thông báo
     setTimeout(() => {
         notification.classList.remove('show');
-    }, 3000); // Ẩn sau 3 giây
+    }, 3000);
 }

@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Làm tối nền */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,22 +19,16 @@
 .modal-footer {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Assume this is now gap: -10px as per the user report */
+    gap: 10px; 
 }
-
-/* Fallback from previous fix */
 .modal-footer button:not(:last-child) {
     margin-right: 10px;
 }
-
-/* Increased specificity from previous fix */
 .modal-overlay .modal-footer {
     display: flex;
     justify-content: center;
     gap: 50px;
 }
-
-/* Fallback */
 #delete-confirm-modal .modal-footer button:not(:last-child) {
     margin-right: 10px;
 }
@@ -110,9 +104,9 @@
 }
 .text3{
     color:grey;
-    font-size: 1.875rem;   /* text-3xl */  
-    font-weight: 700;      /* font-bold */  
-    margin-bottom: 2rem;   /* mb-8 */  
+    font-size: 1.875rem; 
+    font-weight: 700;    
+    margin-bottom: 2rem;     
     text-align: center; 
 }
 .newCalender:hover{
@@ -138,9 +132,9 @@
     border:1px solid blue;
 }
 .editBtn2{
-    background-color:red;
+    background-color:#6b7280;
     color:white;
-    border:1px solid red;
+    border:1px solid grey;
 }
 .editBtn1:hover{
     background-color:white;
@@ -149,7 +143,7 @@ transition: 0.5s;
 }
 .editBtn2:hover{
     background-color:white;
-color:red;
+color:grey;
 transition: 0.5s; 
 }
 .header{
@@ -158,4 +152,18 @@ transition: 0.5s;
     justify-content: space-between;
     gap:10px;
     padding:10px;
+}
+.bookingContainer{
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 2rem; 
+    padding-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+body{
+    background-image: url("../pic/silver.jpg");
 }

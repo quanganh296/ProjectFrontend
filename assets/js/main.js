@@ -32,13 +32,13 @@ function updateNavigation() {
     const startButton = document.getElementById('start-button');
     
 
-    // Menu di động
+    
     const mobileLoginLink = document.getElementById('mobile-login-link');
     const mobileLogoutLink = document.getElementById('mobile-logout-link');
     const mobileAdminLink = document.getElementById('mobile-admin-link');
     const mobileScheduleLink = document.getElementById('mobile-schedule-link'); // Thêm liên kết "Đặt lịch" di động
 
-    // Kiểm tra sự tồn tại của các phần tử trước khi thao tác
+   
     if (currentUser) {
         if (loginLink) loginLink.classList.add('hidden');
         if (logoutLink) logoutLink.classList.remove('hidden');
@@ -47,7 +47,7 @@ function updateNavigation() {
         if (scheduleLink) scheduleLink.classList.remove('hidden'); // Đảm bảo "Đặt lịch" hiển thị
         if (mobileScheduleLink) mobileScheduleLink.classList.remove('hidden'); // Đảm bảo "Đặt lịch" di động hiển thị
 
-        // Hiển thị "Admin" nếu là admin
+     
         if (currentUser.role === 'admin') {
             if (adminLink) adminLink.classList.remove('hidden');
             if (mobileAdminLink) mobileAdminLink.classList.remove('hidden');
@@ -114,7 +114,7 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
 
     errorDiv.classList.add('hidden');
 
-    // Tạo và lưu lịch mới
+  
     const newBooking = {
         id: Date.now().toString(),
         service,
@@ -129,5 +129,5 @@ document.getElementById('booking-form').addEventListener('submit', function (e) 
     localStorage.setItem('bookings', JSON.stringify(bookings));
 
      showNotification('Đặt lịch thành công!');
-    location.reload(); // hoặc ẩn modal và cập nhật bảng
+    location.reload(); 
 });

@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- Sidebar --> 
-       <video autoplay muted loop class="video-background">
+    <video autoplay muted loop class="video-background">
         <source src="../../assets/pic/rain.mp4" type="video/mp4">
     </video>
     <div class="sidebar">
@@ -113,6 +113,10 @@
                         <!-- Bookings will be loaded here -->
                     </tbody>
                 </table>
+                <!-- Pagination Controls -->
+                <div class="flex justify-center items-center mt-4 space-x-2" id="page-numbers">
+                    <!-- Page numbers will be dynamically inserted here -->
+                </div>
             </div>
         </div>
         
@@ -137,13 +141,9 @@
                     <tbody id="services-table-body">
                         <!-- Services will be loaded here -->
                     </tbody>
-                   
                 </table>
-             
             </div>
-            
         </div>
-       
     </div>
 
     <!-- Add Service Modal -->
@@ -199,7 +199,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="block text-sm text-gray-600 mb-1">Xem trước hình ảnh</label>
-                    <img id="edit-image-preview" class="w-32 h-32 object-cover rounded"  alt="Xem trước hình ảnh"/>
+                    <img id="edit-image-preview" class="w-32 h-32 object-cover rounded" alt="Xem trước hình ảnh"/>
                 </div>
             </div>
             <div class="modal-footer">
@@ -285,13 +285,10 @@
                 <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded" id="cancel-delete-booking-btn">Hủy</button>
                 <button type="button" class="bg-red-500 text-white px-4 py-2 rounded" id="confirm-delete-booking-btn">Xóa</button>
             </div>
-            
         </div>
     </div>
- 
-<!-- Script để hoạt động -->
 
-<script src="../../assets/js/db.js"></script>
-
+    <!-- Script để hoạt động -->
+    <script src="../../assets/js/db.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-// admin.js
 document.addEventListener('DOMContentLoaded', () => {
     const services = [
         { id: 1, name: 'Gym Membership', description: 'Access to gym equipment', price: 500000 },

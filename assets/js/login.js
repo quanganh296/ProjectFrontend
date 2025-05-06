@@ -6,22 +6,22 @@ document.getElementById('login-form').addEventListener('submit', function (event
     const errorMessage = document.getElementById('error-message');
   
 
-    // Lấy danh sách người dùng từ localStorage
+
     const users = JSON.parse(localStorage.getItem('users')) || [];
     
     // Tìm người dùng khớp với email và mật khẩu
     const user = users.find(u => u.email.toLowerCase() === email && u.password === password);
 
     if (user) {
-        // Lưu thông tin người dùng vào localStorage, bao gồm fullName và id
+      
         localStorage.setItem('currentUser', JSON.stringify({
             id: user.id,
             email: user.email,
-            fullName: user.fullName || 'N/A', // Đảm bảo fullName luôn có giá trị
+            fullName: user.fullName || 'N/A',
             role: user.role
         }));
 
-        // Chuyển hướng dựa trên vai trò
+
         if (user.role === 'admin') {
             window.location.href = '../admin/dashboard.html';
         } else {
