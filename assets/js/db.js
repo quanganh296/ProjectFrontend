@@ -647,23 +647,65 @@ function loadBookings(applyFilters = false, page = currentPage) {
     const pageNumbersContainer = document.getElementById('page-numbers');
     if (pageNumbersContainer) {
         pageNumbersContainer.innerHTML = '';
-        if (totalPages <= 0) {
-            const button = document.createElement('button');
-            button.className = 'bg-gray-500 text-white px-3 py-1 rounded disabled:bg-gray-300';
-            button.textContent = '0';
-            button.disabled = true;
-            pageNumbersContainer.appendChild(button);
-        } else {
-            for (let i = 0; i < totalPages; i++) {
-                const button = document.createElement('button');
-                button.className = i === currentPage 
-                    ? 'bg-blue-500 text-white px-3 py-1 rounded' 
-                    : 'bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600';
-                button.textContent = i;
-                button.onclick = () => loadBookings(applyFilters, i);
-                pageNumbersContainer.appendChild(button);
+        
+        const prevButton = document.createElement('button');
+        prevButton.textContent = 'Prev';
+        prevButton.className = `px-3 py-1 rounded ${currentPage === 0 ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-500 text-white hover:bg-gray-600'}`;
+        prevButton.disabled = currentPage === 0;
+        prevButton.onclick = () => loadBookings(applyFilters, currentPage - 1);
+        pageNumbersContainer.appendChild(prevButton);
+
+        const maxVisiblePages = 5;
+        let startPage = Math.max(0, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
+        startPage = Math.max(0, endPage - maxVisiblePages + 1);
+
+        if (startPage > 0) {
+            const firstButton = document.createElement('button');
+            firstButton.textContent = '1';
+            firstButton.className = 'px-3 py-1 rounded bg-gray-500 text-white hover:bg-gray-600';
+            firstButton.onclick = () => loadBookings(applyFilters, 0);
+            pageNumbersContainer.appendChild(firstButton);
+
+            if (startPage > 1) {
+                const dots = document.createElement('span');
+                dots.textContent = '...';
+                dots.className = 'px-3 py-1';
+                pageNumbersContainer.appendChild(dots);
             }
         }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const button = document.createElement('button');
+            button.textContent = i + 1;
+            button.className = i === currentPage 
+                ? 'px-3 py-1 rounded bg-blue-500 text-white' 
+                : 'px-3 py-1 rounded bg-gray-500 text-white hover:bg-gray-600';
+            button.onclick = () => loadBookings(applyFilters, i);
+            pageNumbersContainer.appendChild(button);
+        }
+
+        if (endPage < totalPages - 1) {
+            if (endPage < totalPages - 2) {
+                const dots = document.createElement('span');
+                dots.textContent = '...';
+                dots.className = 'px-3 py-1';
+                pageNumbersContainer.appendChild(dots);
+            }
+
+            const lastButton = document.createElement('button');
+            lastButton.textContent = totalPages;
+            lastButton.className = 'px-3 py-1 rounded bg-gray-500 text-white hover:bg-gray-600';
+            lastButton.onclick = () => loadBookings(applyFilters, totalPages - 1);
+            pageNumbersContainer.appendChild(lastButton);
+        }
+
+        const nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.className = `px-3 py-1 rounded ${currentPage === totalPages - 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-500 text-white hover:bg-gray-600'}`;
+        nextButton.disabled = currentPage === totalPages - 1;
+        nextButton.onclick = () => loadBookings(applyFilters, currentPage + 1);
+        pageNumbersContainer.appendChild(nextButton);
     }
     
     updateBookingStats(bookings);
